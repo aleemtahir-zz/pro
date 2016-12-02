@@ -27,6 +27,11 @@ import org.openrdf.model.vocabulary.RDF;
 import org.openrdf.model.vocabulary.RDFS;
 
 public class Cricmantic {
+	//URI of ontology to select individuals
+	private static String newuri="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#";
+	//static String defaultNameSpace = "http://semwebprogramming.org/2009/ont/chp2:#";
+	private static Model model = null;
+	
 	public static void main(String[] args) throws IOException, InterruptedException
 	{
 		String sumdata=null;
@@ -60,6 +65,19 @@ public class Cricmantic {
 		par.parseSum(sumdata);
 		par.parseCommentary(in2data,2);
 		par.parseCommentary(in1data,1);
+	}
+	
+	@SuppressWarnings("unused")
+	private void loadOntology() throws IOException{
+		
+	model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_MICRO_RULE_INF);
+	try {
+		FileManager.get().readModel( model, "crickmantic.owl" );
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
 	}
 
 }

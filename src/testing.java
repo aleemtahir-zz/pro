@@ -12,16 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.jena.atlas.json.JsonArray;
 import org.apache.jena.atlas.json.JsonObject;
+import org.apache.jena.query.QuerySolution;
+import org.apache.jena.query.ResultSet;
+import org.apache.jena.rdf.model.RDFNode;
 
 import com.semantic.jsp.RowObject;
 
-/**
- * Servlet implementation class testing
- */
+
 @WebServlet("/testing")
 public class testing extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	String data = null;
 	
     public testing() {
         // TODO Auto-generated constructor stub
@@ -50,21 +51,7 @@ public class testing extends HttpServlet {
 			out.println(r.getSubject());
 			out.println(r.getObject());
 		}*/
-		
-		//doGet(request,response);
-		/*int integer = 0; 
-		String query= null;
-		String player = "Sarfraz";	
-		String uri = "demo: <http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#> ";
-		String data = request.getParameter("input");
-		query = "prefix " + uri +
-                "select (sum(?score) as ?count) where { " + 
-				"demo:Ind demo:hasPlayer ?bowler." +
-				"?ball demo:ballBatsman demo:"+ player +"." +
-				"?ball demo:ballBowler ?bowler." +
-                " ?ball demo:teamScoreIn1stInnings ?score. } ";
-		integer = com.semantic.jsp.graph.execSelectAndPrint(query);
-		request.setAttribute("results", integer);*/
+		data = request.getParameter("textbox");
 		request.getRequestDispatcher("page.jsp").forward(request, response);
 	}
 
@@ -73,9 +60,11 @@ public class testing extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		
-		int integer = 0; 
+		String player = data;
+		
+		ResultSet rs= null; 
 		String query= null;
-		String player = "Sarfraz";	
+		//String player = "Sarfraz";	
 		String uri = "demo: <http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#> ";
 		String data = request.getParameter("input");
 		if (data.equals("Runs")){
@@ -90,7 +79,7 @@ public class testing extends HttpServlet {
 			query = "prefix " + uri +
 	                "select (sum(?score) as ?count) where { " + 
 					"demo:Ind demo:hasPlayer ?bowler." +
-					"?ball demo:ballBatsman demo:Sami." +
+					"?ball demo:ballBatsman demo:"+ player +"." +
 					"?ball demo:ballBowler ?bowler." +
 	                " ?ball demo:teamScoreIn1stInnings ?score. } ";
 		}
@@ -98,7 +87,7 @@ public class testing extends HttpServlet {
 			query = "prefix " + uri +
 	                "select (sum(?score) as ?count) where { " + 
 					"demo:Ind demo:hasPlayer ?bowler." +
-					"?ball demo:ballBatsman demo:Sami." +
+					"?ball demo:ballBatsman demo:"+ player +"." +
 					"?ball demo:ballBowler ?bowler." +
 	                " ?ball demo:teamScoreIn1stInnings ?score. } ";
 		}
@@ -106,19 +95,36 @@ public class testing extends HttpServlet {
 			query = "prefix " + uri +
 	                "select (sum(?score) as ?count) where { " + 
 					"demo:Ind demo:hasPlayer ?bowler." +
-					"?ball demo:ballBatsman demo:Sami." +
+					"?ball demo:ballBatsman demo:"+ player +"." +
 					"?ball demo:ballBowler ?bowler." +
 	                " ?ball demo:teamScoreIn1stInnings ?score. } ";
 		}
 		else if(data.equals("Wickets")){
-			query = "prefix " + uri +
-	                "select (sum(?score) as ?count) where { " + 
-					"demo:Ind demo:hasPlayer ?bowler." +
-					"?ball demo:ballBatsman demo:Sami." +
-					"?ball demo:ballBowler ?bowler." +
-	                " ?ball demo:teamScoreIn1stInnings ?score. } ";
+			query = "PREFIX demo:<http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#>"+
+					"SELECT (count(distinct ?ball ) as ?count) WHERE {"+ 
+					"?ball demo:ballBowler demo:"+ player +"." +
+					"?ball demo:ballBatsman ?batsman."+
+					"?ball demo:eventIn2ndInnings ?event."+
+					"FILTER(regex(str(?event), 'OUT')).}"+
+					"GROUP BY ?event ";
 		}
-		integer = com.semantic.jsp.graph.execSelectAndPrint(query);
+		rs = com.semantic.jsp.graph.execSelectAndPrint(query);
+		int i=0;
+		while (rs.hasNext()) {
+			QuerySolution soln = rs.nextSolution();
+			RDFNode node = soln.get("count");
+			String s = node.toString();
+			s = s.replaceAll("..http(.*)", "");
+			i = Integer.parseInt(s); 
+		}
+		
+		makeJSON(request,response,i);
+	}
+	
+	public void makeJSON(HttpServletRequest request, HttpServletResponse response, int data) throws ServletException, IOException
+	{
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/html");
 		
 		JsonObject json = new JsonObject();
 		JsonArray yAxis = new JsonArray();
@@ -129,7 +135,7 @@ public class testing extends HttpServlet {
 		yAxis.add("Bangladesh");
 		json.put("yAxis", yAxis);
 		JsonArray xAxis = new JsonArray();
-		xAxis.add(integer);
+		xAxis.add(data);
 		json.put("yAxis", yAxis);
 		json.put("xAxis", xAxis);
 		out.print(json);

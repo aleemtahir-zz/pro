@@ -22,7 +22,7 @@ public class graph {
 	public static void main(String[] args) throws Exception {
 		
 		//loadQuery();
-		getConnectandLoad();
+		//getConnectandLoad();
 		
         
 	}

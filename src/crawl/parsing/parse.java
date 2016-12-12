@@ -37,15 +37,20 @@ public class parse {
 		int j=0;
 		model.read("cric.rdf");
 		int i;
-		for(i=0;i<data.length()-30;i++)
+		for(i=0;i<data.length()-3;i++)
 		{
 			if (data.charAt(i)=='M'&&data.charAt(i+1)=='A'&&data.charAt(i+2)=='T'&&data.charAt(i+3)=='C'
 					&&data.charAt(i+4)=='H'&&data.charAt(i+5)==' '&&data.charAt(i+6)=='I'&&data.charAt(i+7)=='N'
 					&&data.charAt(i+8)=='F'&&data.charAt(i+9)=='O')
 			{
 				
-				i=i+59;
+				while(data.charAt(i)!='T'||data.charAt(i+1)!='o'||data.charAt(i+2)!='s')
+				{
+					i=i+1;
+				}
+				i=i+5;
 				j=0;
+				
 				int team1in=0;
 				int team2in=0;
 				
@@ -104,6 +109,7 @@ public class parse {
 				
 			}
 		}
+	
 		Resource Team1=model.getResource(newuri+team1);
 		Resource Team2=model.getResource(newuri+team2);
 		Property pr1=model.getProperty(newuri+"innings");
@@ -298,7 +304,7 @@ public class parse {
 				if (flag==1)
 				{
 					i=i+1;
-					while(data.charAt(i)!='t'&&data.charAt(i+1)!='o')
+					while(data.charAt(i)!='t'||data.charAt(i+1)!='o')
 					{
 						if(data.charAt(i)!=' ')
 						bowler=bowler+data.charAt(i);

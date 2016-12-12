@@ -18,6 +18,8 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.RDFNode;
 
+import com.semantic.jsp.RowObject;
+
 
 @WebServlet("/testing")
 public class testing extends HttpServlet {
@@ -40,12 +42,7 @@ public class testing extends HttpServlet {
 	    else if (method.equals("makebar")){
 		    makeProgressBar(request,response);
 	        }
-	    else if (method.equals("makeYAxisC2")){
-	    	makeYAxisC2(request,response);
-		    }
-	    else if (method.equals("makeYAxisC1")){
-	    	makeYAxisC1(request,response);
-		    }
+
 		/*else {
 		    throw new IllegalArgumentException("'method' parameter required, must be 'methodA' or 'methodB' !");
 		  }*/
@@ -85,63 +82,101 @@ public class testing extends HttpServlet {
 	{
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
+		
 		String player = PlayerName;
 		String query= null;
+		String param1 = "?team";
+		String param2 = "?score";
+		ArrayList<String> list1 = new ArrayList<String>();
+		ArrayList<Integer> list2 = new ArrayList<Integer>();
 		
 		String uri = "demo: <http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#> ";
 		String data = request.getParameter("input");
 		if (data.equals("RunsP")){
-				query = "prefix " + uri +
-                "select (sum(?score) as ?count) where { " + 
-				"demo:Ind demo:hasPlayer ?bowler." +
-				"?ball demo:ballBatsman "+"demo:"+player+"."+
-				"?ball demo:ballBowler ?bowler."+
-                "?ball demo:playerScore ?score. } ";
+			param1 = "?player";
+			param2 = "?score";
+			
+			
+			query = "prefix " + uri +
+					"select ?player (sum(?s) as ?score) where { " + 
+					"?ball demo:ballBatsman demo:"+PlayerName +". "+
+					"?ball demo:ballBowler ?player . "+
+					"?ball demo:playerScore ?s . } "+
+					"GROUP BY ?player";
+			
 		}
 
 		else if(data.equals("WicketsP")){
-			query = "PREFIX demo:<http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#>"+
-					"SELECT (count(distinct ?ball ) as ?count) WHERE {"+ 
-					"?ball demo:ballBowler demo:"+ player +"." +
+			param1 = "?player";
+			param2 = "?wickets";
+			query = "prefix " + uri +
+					"select ?player (count(?ball) as ?wickets) where { " + 
+					"?ball demo:ballBowler demo:"+PlayerName +". "+
+					"?ball demo:ballBatsman ?player. "+
 					"?ball demo:event ?event."+
-					"FILTER(regex(str(?event), 'OUT')).}"+
-					"GROUP BY ?event ";
+					"FILTER(regex(str(?event), 'OUT')).} "+
+					"GROUP BY ?player";
 		}
 		else if (data.equals("RunsT")){
+			param1 = "?team";
+			param2 = "?score";
 			query = "prefix " + uri +
-		            "select (sum(?score) as ?count) where { " + 
-					"demo:Ind demo:hasPlayer ?bowler." +
-					"?ball demo:ballBatsman "+"demo:"+player+"."+
-					"?ball demo:ballBowler ?bowler."+
-		            "?ball demo:playerScore ?score. } ";
+					"select ?team (sum(?s) as ?score) where { " + 
+					"?team demo:hasPlayer ?bowler ."+
+					"?ball demo:ballBatsman demo:"+PlayerName +". "+
+					"?ball demo:ballBowler ?bowler . "+
+					"?ball demo:playerScore ?s . } "+
+					"GROUP BY ?team";
+			
 			}
 		
 		else if(data.equals("WicketsT")){
-			query = "PREFIX demo:<http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#>"+
-					"SELECT (count(distinct ?ball ) as ?count) WHERE {"+ 
-					"?ball demo:ballBowler demo:"+ player +"." +
+			param1 = "?team";
+			param2 = "?wickets";
+			query = "prefix " + uri +
+					"select ?team (count(?s) as ?wickets) where { " + 
+					"?team demo:hasPlayer ?batsman."+
+					"?ball demo:ballBowler demo:"+PlayerName +". "+
+					"?ball demo:ballBatsman ?batsman. "+
 					"?ball demo:event ?event."+
-					"FILTER(regex(str(?event), 'OUT')).}"+
-					"GROUP BY ?event ";
+					"FILTER(regex(str(?event), 'OUT')).} "+
+					"GROUP BY ?team";
 		}
-		int result = com.semantic.jsp.graphQuery.getSum(query);
 		
-		makeJSON(request,response,result);
+		try {
+			RowObject obj = com.semantic.jsp.graphQuery.getObject(query, param1, param2);
+			list1 = obj.getList1();
+			list2 = obj.getList2();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		makeJSON(request, response, list1, list2);
 	}
 	
-	public void makeJSON(HttpServletRequest request, HttpServletResponse response, int data) throws ServletException, IOException
+	public void makeJSON(HttpServletRequest request, HttpServletResponse response, ArrayList<String> list1, ArrayList<Integer> list2) throws ServletException, IOException
 	{
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		
 		JsonObject json = new JsonObject();
 		JsonArray xAxis = new JsonArray();
-		xAxis.add(data);
+		JsonArray yAxis = new JsonArray();
+		
+		for(int i=0; i<list1.size(); i++)
+		{
+			xAxis.add(list2.get(i));
+			yAxis.add(list1.get(i));
+			
+		}
+		
 		json.put("xAxis", xAxis);
+		json.put("yAxis", yAxis);
 		out.print(json);
 	}
 	
-	public void makeYAxisC2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	/*public void makeYAxisC2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
@@ -179,8 +214,8 @@ public class testing extends HttpServlet {
 				"?ball demo:ballBowler "+ paramP +" . } ";
 
 		listP = com.semantic.jsp.graphQuery.getParam(queryP, paramP);
-		ArrayList<String> list = new ArrayList<String>(listP.subList(0, 5));
-		makeJSONData(request,response,list,paramName);
+		//ArrayList<String> list = new ArrayList<String>(listP.subList(0, 5));
+		makeJSONData(request,response,listP,paramName);
 	}
 	
 	public void makeJSONData(HttpServletRequest request, HttpServletResponse response, ArrayList<String> list, String param) throws ServletException, IOException
@@ -199,5 +234,5 @@ public class testing extends HttpServlet {
 		
 		json.put(param, yAxis);
 		out.print(json);
-	}
+	}*/
 }

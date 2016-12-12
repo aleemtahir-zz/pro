@@ -58,7 +58,9 @@ function respondCanvas2() {
 var GetChartData = function () {
     $.ajax({
         url: 'testing?method=makegraph',
-        data:{input : $("input[name=players]:checked").val()},
+        data:{
+        	input : $("input[name=players]:checked").val()
+        	},
         method: 'GET',
         dataType: 'json',
         async:false,
@@ -66,7 +68,7 @@ var GetChartData = function () {
            console.log(d);
            
            chartData1 = {
-                   labels: player, 
+                   labels: d.yAxis, 
                    datasets: [
                        {
                            data: d.xAxis,
@@ -80,6 +82,11 @@ var GetChartData = function () {
                                'rgba(255, 206, 86, 1)',
                                'rgba(75, 192, 192, 1)',
                                'rgba(153, 102, 255, 1)',
+                               'rgba(255,99,132,1)',
+                               'rgba(54, 162, 235, 1)',
+                               'rgba(255, 206, 86, 1)',
+                               'rgba(75, 192, 192, 1)',
+                               'rgba(153, 102, 255, 1)',
                                'rgba(255, 159, 64, 1)'
                            ],
                            borderColor: [
@@ -88,6 +95,11 @@ var GetChartData = function () {
                                'rgba(255, 206, 86, 1)',
                                'rgba(75, 192, 192, 1)',
                                'rgba(153, 102, 255, 1)',
+                               'rgba(255,99,132,1)',
+                               'rgba(54, 162, 235, 1)',
+                               'rgba(255, 206, 86, 1)',
+                               'rgba(75, 192, 192, 1)',
+                               'rgba(153, 102, 255, 1)',	
                                'rgba(255, 159, 64, 1)'
                            ],
                            borderWidth: 1
@@ -111,7 +123,7 @@ var GetChartData2 = function () {
         success: function (d) {
         	console.log(d);
            chartData2 = {
-                   labels: team, 
+                   labels: d.yAxis, 
                    datasets: [
                        {
                            data: d.xAxis,
@@ -161,41 +173,6 @@ function GetProgressBarData(){
         },
         error:function(){
 	           alert('Progress Bar error');
-	         }
-    });
-}
-
-var team;
-var player;
-
-function GetYAxisC1(){
-	$.ajax({
-        url: 'testing?method=makeYAxisC1',
-        method: 'GET',
-        dataType: 'json',
-        async:false,
-        success: function (data) {
-        	console.log(data);
-        	player = data.Y1;
-        },
-        error:function(){
-	           alert('YAxisC1 error');
-	         }
-    });
-}
-
-function GetYAxisC2(){
-	$.ajax({
-        url: 'testing?method=makeYAxisC2',
-        method: 'GET',
-        dataType: 'json',
-        async:false,
-        success: function (data) {
-        	console.log(data);
-        	team = data.Y2;
-        },
-        error:function(){
-	           alert('YAxisC2 error');
 	         }
     });
 }
@@ -255,8 +232,7 @@ $(document).ready(function () {
 	})
 	); 
 	
-	GetYAxisC1();
-	GetYAxisC2();
+
 	GetChartData();
 	GetChartData2();
 	GetProgressBarData();

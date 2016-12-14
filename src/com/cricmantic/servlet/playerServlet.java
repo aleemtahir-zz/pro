@@ -1,9 +1,8 @@
-
+package com.cricmantic.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,24 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.jena.atlas.json.JsonArray;
 import org.apache.jena.atlas.json.JsonObject;
-import org.apache.jena.atlas.json.JsonValue;
-import org.apache.jena.query.QuerySolution;
-import org.apache.jena.query.ResultSet;
-import org.apache.jena.rdf.model.RDFNode;
 
-import com.semantic.jsp.RowObject;
+import com.cricmantic.functions.RowObject;
 
-
-@WebServlet("/testing")
-public class testing extends HttpServlet {
+/**
+ * Servlet implementation class playerServlet
+ */
+@WebServlet("/playerServlet")
+public class playerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	static String PlayerName = null;
+	static String PlayerName = null;   
 
-    public testing() {
+    public playerServlet() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
@@ -67,6 +65,8 @@ public class testing extends HttpServlet {
 		response.setContentType("text/html");
 		
 		String name = request.getParameter("bar");
+		String event = request.getParameter("param");
+		if(event.equals("runs")){
 		String query= null;	
 		String uri = "demo: <http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#> ";
 		query = "prefix " + uri +
@@ -74,8 +74,35 @@ public class testing extends HttpServlet {
 				"?ball demo:ballBatsman "+"demo:"+ name + "."  +
                 "?ball demo:playerScore ?score. } ";
 		
-		int i = com.semantic.jsp.graphQuery.getSum(query);
+		int i = com.cricmantic.functions.graphQuery.getSum(query);
 		out.print(i);
+		}
+		else if(event.equals("4s")){
+			String query= null;	
+			String uri = "demo: <http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#> ";
+			query = "prefix " + uri +
+	                "select (count(?ball) as ?count)  where { " +
+					"?ball demo:ballBowler ?player."+
+					"?ball demo:ballBatsman "+"demo:"+ name + "."  +
+					"?ball demo:event ?event."+
+	                "FILTER(regex(str(?event), 'FOUR')) } ";
+			
+			int i = com.cricmantic.functions.graphQuery.getSum(query);
+			out.print(i);
+			}
+		else if(event.equals("6s")){
+			String query= null;	
+			String uri = "demo: <http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#> ";
+			query = "prefix " + uri +
+	                "select (count(?ball) as ?count)  where { " +
+					"?ball demo:ballBowler ?player."+
+					"?ball demo:ballBatsman "+"demo:"+ name + "."  +
+					"?ball demo:event ?event."+
+	                "FILTER(regex(str(?event), 'SIX')) } ";
+			
+			int i = com.cricmantic.functions.graphQuery.getSum(query);
+			out.print(i);
+			}
 	}
 	
 	public void makeGraph(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -134,17 +161,17 @@ public class testing extends HttpServlet {
 			param1 = "?team";
 			param2 = "?wickets";
 			query = "prefix " + uri +
-					"select ?team (count(?s) as ?wickets) where { " + 
-					"?team demo:hasPlayer ?batsman."+
+					"select ?team (count(?ball) as ?wickets) where { " + 
+					"?team demo:hasPlayer ?player."+
 					"?ball demo:ballBowler demo:"+PlayerName +". "+
-					"?ball demo:ballBatsman ?batsman. "+
+					"?ball demo:ballBatsman ?player. "+
 					"?ball demo:event ?event."+
 					"FILTER(regex(str(?event), 'OUT')).} "+
 					"GROUP BY ?team";
 		}
 		
 		try {
-			RowObject obj = com.semantic.jsp.graphQuery.getObject(query, param1, param2);
+			RowObject obj = com.cricmantic.functions.graphQuery.getObject(query, param1, param2);
 			list1 = obj.getList1();
 			list2 = obj.getList2();
 		} catch (Exception e) {
@@ -235,4 +262,5 @@ public class testing extends HttpServlet {
 		json.put(param, yAxis);
 		out.print(json);
 	}*/
+
 }

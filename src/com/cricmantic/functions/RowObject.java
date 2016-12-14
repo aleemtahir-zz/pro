@@ -1,4 +1,4 @@
-package com.semantic.jsp;
+package com.cricmantic.functions;
 import java.util.ArrayList;
 
 import org.apache.jena.rdf.model.RDFNode;

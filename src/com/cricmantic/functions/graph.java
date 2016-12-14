@@ -1,4 +1,4 @@
-package com.semantic.jsp;
+package com.cricmantic.functions;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class graph {
 	public static void main(String[] args) throws Exception {
 		
 		//loadQuery();
-		//getConnectandLoad();
+		getConnectandLoad();
 		
         
 	}
@@ -46,10 +46,11 @@ public class graph {
 		
         //System.out.println("# Loading ontology and data");
         connection.begin();
-        connection.add(graph.class.getResourceAsStream("/cric.rdf"),"urn:base", RDFFormat.RDFXML);
+        connection.add(graph.class.getResourceAsStream("/matches/IndPak.rdf"),"urn:base", RDFFormat.RDFXML);
+        connection.add(graph.class.getResourceAsStream("/matches/PakSl.rdf"),"urn:base", RDFFormat.RDFXML);
         //connection.add(FamilyRelationsApp.class.getResourceAsStream("/family-data.ttl"), "urn:base", RDFFormat.TURTLE);
         connection.commit();
-        System.out.println("# Loading ontology and data");
+        System.out.println("# Loaded ontology and data");
     }
 	
 	public static ResultSet execSelectAndPrint(String queryString) {

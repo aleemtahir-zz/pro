@@ -31,6 +31,16 @@ function respondCanvas(ctx, chartData) {
                         beginAtZero:true
                     }
                 }]
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+                callbacks: {
+                   label: function(tooltipItem) {
+                          return tooltipItem.yLabel;
+                   }
+                }
             }
         }
     });
@@ -50,6 +60,16 @@ function respondCanvas2() {
                         beginAtZero:true
                     }
                 }]
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+                callbacks: {
+                   label: function(tooltipItem) {
+                          return tooltipItem.yLabel;
+                   }
+                }
             }
         }
     });
@@ -57,7 +77,7 @@ function respondCanvas2() {
 
 var GetChartData = function () {
     $.ajax({
-        url: 'testing?method=makegraph',
+        url: 'playerServlet?method=makegraph',
         data:{
         	input : $("input[name=players]:checked").val()
         	},
@@ -73,7 +93,7 @@ var GetChartData = function () {
                        {
                            data: d.xAxis,
                            //hoverBackgroundColor: 'rgba(255, 206, 86, 1)',
-                           label: "My First dataset",
+                           //label: "My First dataset",
                            fill: false,
                            lineTension: 0.1,
                            backgroundColor: [
@@ -115,7 +135,7 @@ var GetChartData = function () {
 };
 var GetChartData2 = function () {
     $.ajax({
-        url: 'testing?method=makegraph',
+        url: 'playerServlet?method=makegraph',
         data:{input : $("input[name=team]:checked").val()},
         method: 'GET',
         dataType: 'json',
@@ -128,7 +148,7 @@ var GetChartData2 = function () {
                        {
                            data: d.xAxis,
                            //hoverBackgroundColor: 'rgba(255, 206, 86, 1)',
-                           label: "My First dataset",
+                           //label: false,
                            fill: false,
                            lineTension: 0.1,
                            backgroundColor: [
@@ -160,16 +180,19 @@ var GetChartData2 = function () {
 };
 
 var playername = "${playerName}";
-function GetProgressBarData(){
+function GetProgressBarData(event, elementId){
 	$.ajax({
-        url: 'testing?method=makebar',
-        data:{bar : playername}, 
+        url: 'playerServlet?method=makebar',
+        data:{
+        	bar : playername,
+        	param : event
+        	},	
         method: 'GET',
         dataType: 'json',
         async:false,
         success: function (data) {
         	console.log(data);
-        	makeScores(data);
+        	makeScores(elementId,data);
         },
         error:function(){
 	           alert('Progress Bar error');
@@ -177,9 +200,9 @@ function GetProgressBarData(){
     });
 }
 
-function makeScores(data){
+function makeScores(ID,data){
 	// Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
-	var container = document.getElementById("scoreContainer1");
+	var container = document.getElementById(ID);
 	var bar = new ProgressBar.Circle(container, {
 	  color: '#0095B6',
 	  // This has to be the same size as the maximum width to
@@ -213,6 +236,15 @@ function makeScores(data){
 	bar.animate(1.0);  // Number from 0.0 to 1.0
 }
 
+function insertPic(){
+    var src = document.getElementById("pic");
+    var img = document.createElement("img");
+    img.src = "pics/"+playername+".jpeg";
+    img.style.height="100%";
+    img.style.width="100%";
+    src.appendChild(img);
+}
+
 
 
 $(document).ready(function () {
@@ -235,7 +267,10 @@ $(document).ready(function () {
 
 	GetChartData();
 	GetChartData2();
-	GetProgressBarData();
+	GetProgressBarData("runs","scoreContainer1");
+	GetProgressBarData("runs","scoreContainer2");
+	GetProgressBarData("4s", "scoreContainer3");
+	GetProgressBarData("6s", "scoreContainer4");
 	
 });
 </script>
@@ -247,23 +282,31 @@ $(document).ready(function () {
         <div id="full_page">
 			<div id="header">
 				<div id="header_top">
-					<h1>${playerName}'s Record</h1>
+					<div class="heading">
+						<h1>Player Page</h1>
+					</div>
 				</div>
 				<div id="header_bottom">
 					<div id="biodata">
+						<div class="info">
+							<strong>Name: ${playerName} </strong> 
+						</div>
 					</div>
 					<div id="pic">
+						<script type="text/javascript">
+				            insertPic();
+				        </script>
 					</div>
 					<div id="career">
 						<div id="row">
 							<div id="runsContainer">
-							<div id="scoreContainer1"></div>
+							<div id="scoreContainer1" class="scoreContainer"></div>
 							<div id="textid">
 								<span>Runs</span>
 							</div>
 						</div>
 						<div id="runsContainer">
-							<div id="scoreContainer2"></div>
+							<div id="scoreContainer2" class="scoreContainer"></div>
 							<div id="textid">
 								<span>Average</span>
 							</div>
@@ -271,15 +314,15 @@ $(document).ready(function () {
 						</div>
 						<div id="row">
 							<div id="runsContainer">
-							<div id="scoreContainer2"></div>
+							<div id="scoreContainer3" class="scoreContainer"></div>
 							<div id="textid">
-								<span>Wickets</span>
+								<span>4's</span>
 							</div>
 						</div>
 						<div id="runsContainer">
-							<div id="scoreContainer2"></div>
+							<div id="scoreContainer4" class="scoreContainer"></div>
 							<div id="textid">
-								<span>Out</span>
+								<span>6's</span>
 							</div>
 						</div>
 						</div>
@@ -312,12 +355,7 @@ $(document).ready(function () {
 					</div>
 				</div>
 			</div>
-			<div id="second_type_graph">
-				<div id="graph1">
-				</div>
-				<div id="graph2">
-				</div>
-			</div>
+
 		</div>
     </body>
 </html>

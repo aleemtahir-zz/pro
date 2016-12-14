@@ -1,14 +1,23 @@
 body{
 background-color: #efecec;
 }
+
+.info{
+	margin-top: 50px;
+}
+
+.heading{
+	padding-left: 40%;
+}
+
 #textid{
-	padding-left: 10px;
+	padding-left: 15px;
 	margin: 10px;
 	color: #0095B6;
 }
 
-#scoreContainer2{
-	border: 1px solid black;
+.scoreContainer{
+
     width: 90px;
     height: 90px;
     margin-top: 0px;	
@@ -26,7 +35,7 @@ background-color: #efecec;
 	padding: 20px;
 	background-color: #efecec;
 	width: 1000px;
-	height: 1100px	;
+	height: 765px	;
 	margin: auto;
 }
 #header{
@@ -55,13 +64,13 @@ background-color: #efecec;
 	float: left;
 }
 #pic{
-	padding: 1px 0px 5px 20px;
+	
     margin-bottom: 10px;
     background-color: white;
     border: groove;
 	margin-left: 10px;
-	width: 30%;
-	height: 300px;
+	width: 32%;
+	height: 305px;
 	float:left;
 }
 #career{
@@ -89,14 +98,11 @@ background-color: #efecec;
 }
 #graph2{
     margin-top: inherit;
+    margin-left: 6px;
     padding: 0px 20px 20px 20px;
     background-color: white;
     border: groove;
     width: 45%;
     height: inherit;
     float: left;
-}
-#second_type_graph{
-	margin-top: 10px;
-	height: 300px;
 }

@@ -1,5 +1,5 @@
-body{
-background-color: #efecec;
+.playerPage{
+
 }
 
 .info{
@@ -32,77 +32,47 @@ background-color: #efecec;
 }
 
 #full_page{
-	padding: 20px;
-	background-color: #efecec;
+	
 	width: 1000px;
 	height: 765px	;
 	margin: auto;
 }
-#header{
-	margin-bottom: 10px;
+.headerDiv{
+	width: inherit;
 }
-#header_top{
-	padding: 1px 0px 5px 20px;
-    margin-bottom: 10px;
-    background-color: white;
+.header{
     border: groove;
     width: inherit;
     height: 80px;
     
 }
-#header_bottom{
+.profileDiv{
+	height:305px;
+	width: inherit;
+	
+}
+.profile{
+	
+    background-color: white;
+    border: groove;
+	height:inherit;
+}
+.graphDiv{
+	
+	width: inherit;
+	height: 350px;
+}
+.graph{
+    background-color: white;
+    border: groove;
+    height: inherit;
+    float: left;
+}
+.teamPage{
+	padding: 30px 0px 0px 70px;
+}
+.teamTable{
+	width:80%;
+	padding: 5px 0px 0px 15px;
+}
 
-	
-}
-#biodata{
-	padding: 1px 0px 5px 20px;
-    margin-bottom: 10px;
-    background-color: white;
-    border: groove;
-	width: 30%;
-	height: 300px;
-	float: left;
-}
-#pic{
-	
-    margin-bottom: 10px;
-    background-color: white;
-    border: groove;
-	margin-left: 10px;
-	width: 32%;
-	height: 305px;
-	float:left;
-}
-#career{
-	padding: 1px 0px 5px 20px;
-    margin-bottom: 10px;
-    background-color: white;
-    border: groove;
-	margin-left: 10px;
-	width: 30%;
-	height: 300px;
-	float:left;
-}
-#first_type_graphs{
-	margin-top: 10px;
-	height: 300px;
-}
-#graph1{
-    margin-top: inherit;
-    padding: 0px 20px 20px 20px;
-    background-color: white;
-    border: groove;
-    width: 45%;
-    height: inherit;
-    float: left;
-}
-#graph2{
-    margin-top: inherit;
-    margin-left: 6px;
-    padding: 0px 20px 20px 20px;
-    background-color: white;
-    border: groove;
-    width: 45%;
-    height: inherit;
-    float: left;
-}

@@ -66,7 +66,7 @@ public class graphQuery {
 		return i;
 	}
 	
-public static ArrayList<String> getParam(String queryString, String param) {
+public static ArrayList<String> getOneList(String queryString, String param) {
 		
 		String endpoint = "http://localhost:7200/repositories/cricket";
 		

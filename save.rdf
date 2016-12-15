@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:demo="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <owl:Ontology rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2"/>
+  <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Umpire"/>
+  <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Match"/>
+  <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#FieldUmpire">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Umpire"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Overs"/>
+  <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#MatchType"/>
+  <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#T20">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#MatchType"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#ODI">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#MatchType"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Team">
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#TVUmpire">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Umpire"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Test">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#MatchType"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#instanceHasMatch"/>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#ballBatsman"/>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#ballBowler">
+    <owl:equivalentProperty>
+      <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#ballDeliveredBy"/>
+    </owl:equivalentProperty>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#ballOf"/>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#throwBall">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Overs"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#matchType"/>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#batTo">
+    <rdfs:comment xml:lang="en">batsman face the bowler</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#bowlTo"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#playedMatch"/>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#isUmpireOf">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Match"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Umpire"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#matchBetween"/>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#isBattingWith">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#isBowlingWith"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#ballDeliveredBy">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Overs"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#isPlayerOf"/>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#ballFaceBy">
+    <rdfs:comment xml:lang="en">specific ball face by any player
+i.e. 0.2 ball face by Shahid Afridi</rdfs:comment>
+    <rdfs:comment>Ball delivery</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Overs"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#hasPlayer">
+    <rdfs:comment xml:lang="en">Team has specific player</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Team"/>
+    <owl:inverseOf rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#isPlayerOf"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#isBowlingWith">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Team"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Team"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#bowlTo">
+    <rdfs:comment xml:lang="en">bowler throw ball to the batsman</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#hasMatchBetween"/>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#playedBall">
+    <rdfs:comment xml:lang="en">player play specific ball</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Overs"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Runs">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#extraScore2ndInnings"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#innings"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#teamScoreIn2ndInnings"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#extraScore1stInnings"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#eventIn1stInnings"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#matchVenue">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#unrecognizedData"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#over">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Overs"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#matchUmpires"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#matchToss"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#teamScoreIn1stInnings"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#manOfTheMatch"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#matchDate"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#teamWickets"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#eventIn2ndInnings"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#teamScore">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Team"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#scoreIn2ndInnings">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Overs"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#matchInfo"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#scoreIn1stInnings">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Overs"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#matchTvUmpire">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+  </owl:DatatypeProperty>
+  <owl:SymmetricProperty rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#playTo">
+    <rdfs:comment xml:lang="en">Team 1 play to Team 2</rdfs:comment>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Team"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#Team"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:SymmetricProperty>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2>
+              <swrl:Variable rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#x"/>
+            </swrl:argument2>
+            <swrl:argument1>
+              <swrl:Variable rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#y"/>
+            </swrl:argument1>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#playTo"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#y"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#x"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#playTo"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S6</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#x"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#y"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#batTo"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#y"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#x"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#bowlTo"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S3</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#x"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#y"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#isBattingWith"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#y"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#x"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#isBowlingWith"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S2</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2>
+              <swrl:Variable rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#t2"/>
+            </swrl:argument2>
+            <swrl:argument1>
+              <swrl:Variable rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#t1"/>
+            </swrl:argument1>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#isBowlingWith"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:argument2 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#t2"/>
+                    <swrl:argument1>
+                      <swrl:Variable rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#p2"/>
+                    </swrl:argument1>
+                    <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#isPlayerOf"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+              </swrl:AtomList>
+            </rdf:rest>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:argument2 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#t1"/>
+                <swrl:argument1>
+                  <swrl:Variable rdf:about="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#p1"/>
+                </swrl:argument1>
+                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#isPlayerOf"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#p2"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#p1"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#bowlTo"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S5</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#x"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#y"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#playedBall"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#y"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#x"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#ballFaceBy"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S4</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#x"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#y"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#isPlayerOf"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#y"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#x"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#hasPlayer"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S1</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+</rdf:RDF>

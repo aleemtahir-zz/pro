@@ -32,19 +32,22 @@ public class playerServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
+		String player = null;
 		
-		String method = request.getParameter("method");
-		if(method.equals("makegraph")){
-			makeGraph(request,response);
+		try{
+			player = request.getParameter("name");
+			if(!(player.equals(null))){
+				PlayerName = player;
+				doPost(request, response);
 			}
-	    else if (method.equals("makebar")){
-		    makeProgressBar(request,response);
-	        }
+			else{
+				loadPage(request, response);
+				}
+			}
+			catch(Exception e){
+				loadPage(request, response);
+			}
 
-		/*else {
-		    throw new IllegalArgumentException("'method' parameter required, must be 'methodA' or 'methodB' !");
-		  }*/
-		
 		
 	}
 
@@ -53,12 +56,22 @@ public class playerServlet extends HttpServlet {
 	{
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
-
-		PlayerName = request.getParameter("textbox");
+		
 		request.setAttribute("playerName",PlayerName);
-		request.getRequestDispatcher("page.jsp").forward(request, response);
+		request.getRequestDispatcher("player.jsp").forward(request, response);
 	}
 
+	private void loadPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		
+		String method = request.getParameter("method");
+		if(method.equals("makegraph")){
+			makeGraph(request,response);
+			}
+	    else if (method.equals("makebar")){
+		    makeProgressBar(request,response);
+	        }
+	}
 
 	public void makeProgressBar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
@@ -110,7 +123,7 @@ public class playerServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		
-		String player = PlayerName;
+		
 		String query= null;
 		String param1 = "?team";
 		String param2 = "?score";

@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="style.css">
 <title>Insert title here</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
@@ -279,25 +280,53 @@ $(document).ready(function () {
 	</style>
 </head>
 <body>
+<div class="playerPage">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://localhost:8080/Pro/">Cricmantic</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="http://localhost:8080/Pro/">Home</a></li>
+        <li><a href="#about">Player</a></li>
+        <li><a href="http://localhost:8080/Pro/teamServlet">Team</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+	<br/><br/>
         <div id="full_page">
-			<div id="header">
-				<div id="header_top">
+			<div class="headerDiv">
+				<div class="header">
 					<div class="heading">
-						<h1>Player Page</h1>
+						<h1>Player</h1>
 					</div>
 				</div>
-				<div id="header_bottom">
-					<div id="biodata">
+				</div>
+				<br/>
+				<div class="profileDiv">
+					<div class="profile col-md-4">
 						<div class="info">
 							<strong>Name: ${playerName} </strong> 
+							<br/>
+							<hr/>
+							<strong>Team: </strong>
+							<br/>
+							<hr/>
 						</div>
 					</div>
-					<div id="pic">
+					<div id="pic" class="profile col-md-4">
 						<script type="text/javascript">
 				            insertPic();
 				        </script>
 					</div>
-					<div id="career">
+					<div class="profile col-md-4">
 						<div id="row">
 							<div id="runsContainer">
 							<div id="scoreContainer1" class="scoreContainer"></div>
@@ -328,9 +357,9 @@ $(document).ready(function () {
 						</div>
 					</div>
 				</div>
-			</div>
-			<div id="first_type_graphs">
-				<div id="graph1">
+			<br/>
+			<div class="graphDiv">
+				<div class="graph col-md-6">
 					<div>
 						<h2>Runs Against Player</h2>
 					</div>
@@ -342,7 +371,7 @@ $(document).ready(function () {
 					 	<canvas id="myChart1"></canvas>
 					</div>
 				</div>
-				<div id="graph2">
+				<div class="graph col-md-6">
 					<div>
 						<h2>Runs Against Team</h2>
 					</div>
@@ -354,8 +383,10 @@ $(document).ready(function () {
 					 	<canvas id="myChart2"></canvas>
 					</div>
 				</div>
+				<br/>
 			</div>
 
+		</div>
 		</div>
     </body>
 </html>

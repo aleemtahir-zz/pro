@@ -1,4 +1,7 @@
 package crawl.parsing;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -17,7 +20,7 @@ import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
 import org.apache.jena.vocabulary.XSD;
 public class parse {
-	private static String newuri="http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#";
+	private static String newuri="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#";
 	private static String match="";
 	private static String matchInfo="";
 	private static String matchToss="";
@@ -31,6 +34,7 @@ public class parse {
 	private static String Tvumpire="";
 	private static String venue="";
 	private static String unregdata="";
+	private static int balls=0;
 	public void parseSum(String data) 
 	{
 		Model model = ModelFactory.createOntologyModel();
@@ -109,7 +113,7 @@ public class parse {
 				
 			}
 		}
-	
+/*	
 		Resource Team1=model.getResource(newuri+team1);
 		Resource Team2=model.getResource(newuri+team2);
 		Property pr1=model.getProperty(newuri+"innings");
@@ -128,12 +132,13 @@ public class parse {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+	*/
 	}
 	public void parseFact(String data) 
 	{
 		Model model = ModelFactory.createOntologyModel();
-		model.read("crickmantic.owl");
+		model.read("cricmantic.owl");
+	
 		int i=0;
 		int j=0;
 		for(i=0;i<data.length()-30;i++)
@@ -209,15 +214,14 @@ public class parse {
 				
 			}
 		}
-		match=team1+team2+matchInfo;
+		match=team1+team2;
+			match=match+matchInfo.substring(0,matchInfo.length()-1);
+		
 		Resource Match=model.createResource(newuri+match);
 		Resource class1=model.getResource(newuri+"Match");
-		
-		Resource Umpire=model.createResource(newuri+umpire);
-		Resource UmpireTv=model.createResource(newuri+Tvumpire);
-		
 		Resource Team1=model.createResource(newuri+team1);
 		Resource Team2=model.createResource(newuri+team2);
+		Resource class2=model.getResource(newuri+"Team");
 		Property pr=model.getProperty(newuri+"hasMatchBetween");
 		Property hasMatch=model.getProperty(newuri+"instanceHasMatch");
 		Property pr5=model.getProperty(newuri+"matchInfo");
@@ -226,32 +230,24 @@ public class parse {
 		Property pr6=model.getProperty(newuri+"matchVenue");
 		Property pr7=model.getProperty(newuri+"matchTvUmpire");
 		Property pr3=model.createProperty(newuri+"matchBetween");
-		Resource class2=model.getResource(newuri+"Team");
-		Property pr8=model.getProperty(newuri+"isUmpireOf");
-		Resource class3=model.getResource(newuri+"FieldUmpire");
-		Resource class4=model.getResource(newuri+"TVUmpire");
+		
+		
 		model.add(Match,RDF.type,class1);
 		model.add(Team1,RDF.type,class2);
 		model.add(Team2,RDF.type,class2);
-		model.add(Umpire,RDF.type,class3);
-		model.add(UmpireTv,RDF.type,class4);
 		model.add(Team1,hasMatch,Match);
 		model.add(Team2,hasMatch,Match);
-		model.add(Umpire,hasMatch,Match);
-		model.add(UmpireTv,hasMatch,Match);
 		model.add(Match,pr,Team1);
 		model.add(Match,pr,Team2);
 		model.add(Team1,pr3,Team2);
 		model.add(Team2,pr3,Team1);
 		Match.addLiteral(pr2, matchDate);
-		Match.addLiteral(pr5, matchInfo);
+		Match.addLiteral(pr5, matchInfo.substring(0, matchInfo.length()-1));
 		Match.addLiteral(pr4, umpire);
 		Match.addLiteral(pr6, venue);
 		Match.addLiteral(pr7, Tvumpire);
-		model.add(Umpire,pr8,Match);
-		model.add(UmpireTv,pr8,Match);
 		
-		String fileName = "cric.rdf"; 
+		String fileName = "save.rdf"; 
 		FileWriter out;
 		try 
 		{ 
@@ -265,7 +261,7 @@ public class parse {
 		}
 		
 	}
-	public void parseCommentary(String data,int inn)
+	public void parseCommentary(String data,int inn) throws IOException
 	{
 		
 		Model model = ModelFactory.createOntologyModel();
@@ -281,7 +277,24 @@ public class parse {
 		float f=0;
 		int score=0;
 		int escore=-1;
-		
+	if(inn==1)
+	{
+		String content = null;
+		  File file = new File("C:\\Users\\Hamza\\Downloads\\Compressed\\pro-master_3\\pro-master\\Balls.txt");
+	      FileReader fr = null;
+	      try {
+	          fr = new FileReader(file);
+	          char[] chars = new char[(int) file.length()];
+	          fr.read(chars);
+	          content = new String(chars);
+	          fr.close();
+	      } catch (IOException e) {
+	          e.printStackTrace();
+	      } finally {
+	          if(fr !=null){fr.close();}
+	      }
+	      balls=Integer.parseInt(content);
+	}
 			for(i=0;i<data.length()-3;i++)
 			{
 				if(Character.getNumericValue(data.charAt(i))>=0 && Character.getNumericValue(data.charAt(i))<=9	
@@ -442,22 +455,22 @@ public class parse {
 					
 					Property ball=model.getProperty(newuri+"ballBowler");
 					
-					Resource overIns = model.createResource(newuri+over); 
+					Resource overIns = model.createResource(newuri+String.valueOf(balls)); 
 					Property bat=model.getProperty(newuri+"ballBatsman");
 					Resource bowllerIns = model.createResource(newuri+bowler);
 					Resource batsmanIns = model.createResource(newuri+batsman);
 					Property player=model.getProperty(newuri+"hasPlayer");
 					Property player10=model.getProperty(newuri+"over");
 					Property hasMatch=model.getProperty(newuri+"instanceHasMatch");
-					Property Score1=model.getProperty(newuri+"scoreIn1stInnings");
-					Property Score2=model.getProperty(newuri+"scoreIn2ndInnings");
-					Property TScore1=model.getProperty(newuri+"teamScoreIn1stInnings");
-					Property TScore2=model.getProperty(newuri+"teamScoreIn2ndInnings");
-					Property EScore1=model.getProperty(newuri+"extraScore1stInnings");
-					Property EScore2=model.getProperty(newuri+"extraScore2ndInnings");
-					Property Event1=model.getProperty(newuri+"eventIn1stInnings");
-					Property Event2=model.getProperty(newuri+"eventIn2ndInnings");
-					Property player1=model.getProperty(newuri+"innings");
+					Property Score1=model.getProperty(newuri+"playerScore");
+					//Property Score2=model.getProperty(newuri+"scoreIn2ndInnings");
+					Property TScore1=model.createProperty(newuri+"teamScore");
+					//Property TScore2=model.createProperty(newuri+"teamScoreIn2ndInnings");
+					Property EScore1=model.createProperty(newuri+"extraScore");
+					//Property EScore2=model.createProperty(newuri+"extraScore2ndInnings");
+					Property Event1=model.createProperty(newuri+"event");
+				//	Property Event2=model.createProperty(newuri+"eventIn2ndInnings");
+					Property player1=model.createProperty(newuri+"innings");
 					Property player2=model.getProperty(newuri+"isPlayerOf");
 					Resource Team1=model.getResource(newuri+team1);
 					Resource Team2=model.getResource(newuri+team2);
@@ -489,96 +502,56 @@ public class parse {
 						Match.addLiteral(UnrecData, unregdata);
 					}
 					flag2=0;
-				if(inn==1 && team1Innings=="First")
-				{
+				
 					if (escore!=-1)
 						{
+							
 							overIns.addLiteral(EScore1, escore);
 							overIns.addLiteral(TScore1, escore);
 						}
 					else
 					{
+						
 						overIns.addLiteral(Score1, score);
 						overIns.addLiteral(TScore1, score);
 					}
 					
 					overIns.addLiteral(Event1, event);
-					
-					
+					if(inn==1 && team1Innings=="First")
+					{
+					overIns.addLiteral(player1, "First");
 					model.add(Team2,player,bowllerIns);
 					model.add(Team1,player,batsmanIns);
 					
-					bowllerIns.addLiteral(player1, team2Innings);
-					
-					batsmanIns.addLiteral(player1, team1Innings);
-					
 					bowllerIns.addProperty(player2, Team2);
 					batsmanIns.addProperty(player2,Team1);
-				}
-				else if(inn==1)
-				{
-					if (escore!=-1)
-					{
-						overIns.addLiteral(EScore1, escore);
-						overIns.addLiteral(TScore1, escore);
-					}
-					else
-						{
-						overIns.addLiteral(Score1, score);
-						overIns.addLiteral(TScore1, score);
-						}
-				
-					overIns.addLiteral(Event1,  event);
-				
-					model.add(Team1,player,bowllerIns);
-					model.add(Team2,player,batsmanIns);
-					bowllerIns.addLiteral(player1, team1Innings);
-					batsmanIns.addLiteral(player1, team2Innings);
-					bowllerIns.addProperty(player2, Team1);
-					batsmanIns.addProperty(player2,Team2);
-				}
-				else if(inn==2 && team1Innings=="Second")
-				{
-					if (escore!=-1)
-					{
-						overIns.addLiteral(EScore2, escore);
-						overIns.addLiteral(TScore2, escore);
-					}
-					else
-					{
-						overIns.addLiteral(Score2, score);
-						overIns.addLiteral(TScore2, score);
-					}
-					overIns.addLiteral(Event2, event);
 					
-					model.add(Team2,player,bowllerIns);
-					model.add(Team1,player,batsmanIns);
-					bowllerIns.addLiteral(player1, team2Innings);
-					batsmanIns.addLiteral(player1, team1Innings);
-					bowllerIns.addProperty(player2, Team2);
-					batsmanIns.addProperty(player2,Team1);
-				}
-				else
-				{
-					if (escore!=-1)
+					}
+					else if(inn==1)
 					{
-						overIns.addLiteral(EScore2, escore);
-						overIns.addLiteral(TScore2, escore);
+						overIns.addLiteral(player1, "First");
+						model.add(Team1,player,bowllerIns);
+						model.add(Team2,player,batsmanIns);
+						bowllerIns.addProperty(player2, Team1);
+						batsmanIns.addProperty(player2,Team2);
+					}
+					else if(inn==2 && team1Innings=="Second")
+					{
+						overIns.addLiteral(player1, "Second");
+						model.add(Team2,player,bowllerIns);
+						model.add(Team1,player,batsmanIns);
+						
+						bowllerIns.addProperty(player2, Team2);
+						batsmanIns.addProperty(player2,Team1);
 					}
 					else
 					{
-						overIns.addLiteral(Score2, score);
-						overIns.addLiteral(TScore2, score);
+						overIns.addLiteral(player1, "Second");
+						model.add(Team1,player,bowllerIns);
+						model.add(Team2,player,batsmanIns);
+						bowllerIns.addProperty(player2, Team1);
+						batsmanIns.addProperty(player2,Team2);
 					}
-					overIns.addLiteral(Event1, event);
-					
-					model.add(Team1,player,bowllerIns);
-					model.add(Team2,player,batsmanIns);
-					bowllerIns.addLiteral(player1, team1Innings);
-					batsmanIns.addLiteral(player1, team2Innings);
-					bowllerIns.addProperty(player2, Team1);
-					batsmanIns.addProperty(player2,Team2);
-				}
 					flag=0;		
 					flag2=0;
 					score=0;
@@ -586,6 +559,7 @@ public class parse {
 					event="";
 					batsman="";
 					bowler="";
+					balls=balls+1;
 					
 				}
 			}
@@ -594,15 +568,24 @@ public class parse {
 			try 
 			{ 
 				out = new FileWriter(fileName );
-				model.write( out, "RDF/XML" ); out.close(); 
+				model.write( out, "RDF/XML" );
+				out.close(); 
+				
 				} 
 			catch(IOException e) 
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 		}
-				
-	}
-	
+if(inn==2)
+		 {
+			File file = new File("C:\\Users\\Hamza\\Downloads\\Compressed\\pro-master_3\\pro-master\\Balls.txt");
+			out=new FileWriter(file);  	
+		  	out.write(String.valueOf(balls));
+		  	out.close();
+		 }
+		}
+			
 }
+
 

@@ -9,10 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.openrdf.repository.RepositoryConnection;
+import org.openrdf.repository.http.HTTPRepository;
+
 @WebServlet("/commentaryServlet")
 public class commentaryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	static String NameSpace = "http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#";
     public commentaryServlet() {
         super();
         // TODO Auto-generated constructor stub
@@ -30,10 +33,17 @@ public class commentaryServlet extends HttpServlet {
 		String subject = request.getParameter("subject");
 		String predicate = request.getParameter("predicate");
 		String object = request.getParameter("object");
+
 		
-		String str = subject+" "+ predicate +" "+object;
-		out.print(str);
-		//com.cricmantic.functions.Insert.main(str);
+
+		String update = String.format(
+                "PREFIX demo: <http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#>" +
+                        "INSERT DATA { " +
+                        "demo:"+subject+" demo:"+predicate+" demo:"+object +
+                        " }");
+		com.cricmantic.functions.graph.executeUpdate(update);
+		//out.print(update+"      Data is inserted!");
+		request.getRequestDispatcher("index.html").forward(request, response);
 	}
 
 }

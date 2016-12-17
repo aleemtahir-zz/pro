@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="style.css">
-<title>Insert title here</title>
+<title>Cricmantic</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="dist/progressbar.min.js"></script>
@@ -238,12 +238,10 @@ function makeScores(ID,data){
 }
 
 function insertPic(){
-    var src = document.getElementById("pic");
-    var img = document.createElement("img");
+    var img = document.getElementById("picID");
     img.src = "pics/"+playername+".jpeg";
-    img.style.height="100%";
-    img.style.width="100%";
-    src.appendChild(img);
+
+    //src.appendChild(img);
 }
 
 
@@ -280,7 +278,7 @@ $(document).ready(function () {
 	</style>
 </head>
 <body>
-<div class="playerPage">
+<div class="container playerPage">
 	<div class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -301,64 +299,63 @@ $(document).ready(function () {
   </div>
 </div>
 	<br/><br/>
-        <div id="full_page">
-			<div class="headerDiv">
+        <div class="container" id="full_page">
+			<div class="row headerDiv">
 				<div class="header">
 					<div class="heading">
 						<h1>Player</h1>
 					</div>
 				</div>
-				</div>
-				<br/>
-				<div class="profileDiv">
-					<div class="profile col-md-4">
-						<div class="info">
-							<strong>Name: ${playerName} </strong> 
-							<br/>
-							<hr/>
-							<strong>Team: </strong>
-							<br/>
-							<hr/>
-						</div>
-					</div>
-					<div id="pic" class="profile col-md-4">
-						<script type="text/javascript">
-				            insertPic();
-				        </script>
-					</div>
-					<div class="profile col-md-4">
-						<div id="row">
-							<div id="runsContainer">
-							<div id="scoreContainer1" class="scoreContainer"></div>
-							<div id="textid">
-								<span>Runs</span>
-							</div>
-						</div>
-						<div id="runsContainer">
-							<div id="scoreContainer2" class="scoreContainer"></div>
-							<div id="textid">
-								<span>Average</span>
-							</div>
-						</div>
-						</div>
-						<div id="row">
-							<div id="runsContainer">
-							<div id="scoreContainer3" class="scoreContainer"></div>
-							<div id="textid">
-								<span>4's</span>
-							</div>
-						</div>
-						<div id="runsContainer">
-							<div id="scoreContainer4" class="scoreContainer"></div>
-							<div id="textid">
-								<span>6's</span>
-							</div>
-						</div>
-						</div>
-					</div>
-				</div>
+			</div>
 			<br/>
-			<div class="graphDiv">
+			<div class="row profileDiv">
+				<div class="profile col-md-4">
+					<div class="info">
+						<strong>Name: ${playerName} </strong> 
+						<br/>
+						<hr/>
+						<strong>Team: ${playerTeam}</strong>
+						<br/>
+						<hr/>
+					</div>
+				</div>
+				<div id="pic" class="profile col-md-4">
+					<img src="pics/${playerName}.jpeg" alt="${playerName}">
+					
+				</div>
+				<div class="profile col-md-4">
+					<div id="row">
+						<div id="runsContainer">
+						<div id="scoreContainer1" class="scoreContainer"></div>
+						<div id="textid">
+							<span>Runs</span>
+						</div>
+					</div>
+					<div id="runsContainer">
+						<div id="scoreContainer2" class="scoreContainer"></div>
+						<div id="textid">
+							<span>Average</span>
+						</div>
+					</div>
+					</div>
+					<div id="row">
+						<div id="runsContainer">
+						<div id="scoreContainer3" class="scoreContainer"></div>
+						<div id="textid">
+							<span>Fours</span>
+						</div>
+					</div>
+					<div id="runsContainer">
+						<div id="scoreContainer4" class="scoreContainer"></div>
+						<div id="textid">
+							<span>Sixess</span>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+			<br/>
+			<div class="row graphDiv">
 				<div class="graph col-md-6">
 					<div>
 						<h2>Runs Against Player</h2>

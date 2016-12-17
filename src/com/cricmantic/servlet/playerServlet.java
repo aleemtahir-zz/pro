@@ -21,7 +21,11 @@ import com.cricmantic.functions.RowObject;
 @WebServlet("/playerServlet")
 public class playerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	String uri = "demo: <http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#> ";
+	ArrayList<String> list1 = new ArrayList<String>();
+	ArrayList<Integer> list2 = new ArrayList<Integer>();
 	static String PlayerName = null;   
+	static String PlayerTeam = null;
 
     public playerServlet() {
         super();
@@ -38,13 +42,17 @@ public class playerServlet extends HttpServlet {
 			player = request.getParameter("name");
 			if(!(player.equals(null))){
 				PlayerName = player;
+				getTeam();
 				doPost(request, response);
 			}
 			else{
+				getTeam();
 				loadPage(request, response);
+				
 				}
 			}
 			catch(Exception e){
+				getTeam();
 				loadPage(request, response);
 			}
 
@@ -58,6 +66,7 @@ public class playerServlet extends HttpServlet {
 		response.setContentType("text/html");
 		
 		request.setAttribute("playerName",PlayerName);
+		request.setAttribute("playerTeam",PlayerTeam);
 		request.getRequestDispatcher("player.jsp").forward(request, response);
 	}
 
@@ -81,7 +90,6 @@ public class playerServlet extends HttpServlet {
 		String event = request.getParameter("param");
 		if(event.equals("runs")){
 		String query= null;	
-		String uri = "demo: <http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#> ";
 		query = "prefix " + uri +
                 "select (sum(?score) as ?count) where { " + 
 				"?ball demo:ballBatsman "+"demo:"+ name + "."  +
@@ -92,7 +100,6 @@ public class playerServlet extends HttpServlet {
 		}
 		else if(event.equals("4s")){
 			String query= null;	
-			String uri = "demo: <http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#> ";
 			query = "prefix " + uri +
 	                "select (count(?ball) as ?count)  where { " +
 					"?ball demo:ballBowler ?player."+
@@ -105,7 +112,6 @@ public class playerServlet extends HttpServlet {
 			}
 		else if(event.equals("6s")){
 			String query= null;	
-			String uri = "demo: <http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#> ";
 			query = "prefix " + uri +
 	                "select (count(?ball) as ?count)  where { " +
 					"?ball demo:ballBowler ?player."+
@@ -126,11 +132,7 @@ public class playerServlet extends HttpServlet {
 		
 		String query= null;
 		String param1 = "?team";
-		String param2 = "?score";
-		ArrayList<String> list1 = new ArrayList<String>();
-		ArrayList<Integer> list2 = new ArrayList<Integer>();
-		
-		String uri = "demo: <http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#> ";
+		String param2 = "?score";		
 		String data = request.getParameter("input");
 		if (data.equals("RunsP")){
 			param1 = "?player";
@@ -214,6 +216,25 @@ public class playerServlet extends HttpServlet {
 		json.put("xAxis", xAxis);
 		json.put("yAxis", yAxis);
 		out.print(json);
+	}
+	
+	private void getTeam() throws ServletException, IOException
+	{
+		
+		String param1 = "?team";
+		String query = "prefix " + uri +
+				"select ?team where { " + 
+				"?team demo:hasPlayer demo:"+PlayerName +". }";
+		try {
+			list1 = com.cricmantic.functions.graphQuery.getOneList(query, param1);
+			//list1 = obj.getList1();
+			PlayerTeam = list1.get(0);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(PlayerTeam);
 	}
 	
 	/*public void makeYAxisC2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

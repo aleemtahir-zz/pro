@@ -3,9 +3,30 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Cricmantic</title>
-<link href="dist/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<script src="dist/jquery-3.1.0.js"></script>
-<script src="dist/bootstrap.min.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<script src="js/jquery-3.1.0.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<link href="css/font.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/component.css" />
+<script src="js/modernizr.custom.js"></script>
+<link rel="stylesheet" href="css/jquery.loadingModal.css">
+<script src="js/jquery.loadingModal.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		console.log("load page");
+		$('body').loadingModal({text: 'Loading ...'});
+        var delay = function(ms){ return new Promise(function(r) { setTimeout(r, ms) }) };
+        var time = 2000;
+
+        delay(time)
+                .then(function() { $('body').loadingModal('hide'); return delay(time); } )
+                .then(function() { $('body').loadingModal('destroy') ;} );
+    });
+
+</script>
+
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">

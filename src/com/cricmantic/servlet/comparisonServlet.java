@@ -70,9 +70,9 @@ public class comparisonServlet extends HttpServlet {
 				query = "prefix " + uri +
 		                "select (count(?ball) as ?count)  where { " +
 						"?ball demo:ballBowler ?player."+
-						"?ball demo:ballBatsman "+"demo:"+ player + "."  +
+						"?ball demo:ballBowler "+"demo:"+ player + "."  +
 						"?ball demo:event ?event."+
-		                "FILTER(regex(str(?event), 'WICKET')) } ";
+		                "FILTER(regex(str(?event), 'OUT')) } ";
 				
 				i = com.cricmantic.functions.graphQuery.getSum(query);
 				list.add(i);

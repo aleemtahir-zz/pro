@@ -6,13 +6,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">	
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 <title>Cricmantic</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<link href="dist/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<script src="dist/jquery-3.1.0.js"></script>
-<script src="dist/bootstrap.min.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<script src="js/jquery-3.1.0.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<link href="css/font.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/component.css" />
+<script src="js/modernizr.custom.js"></script>
+
+<style>
+h3{
+	color: grey;
+}
+
+</style>
+
 </head>
+
 <body>
 
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -39,9 +52,9 @@
 <div class="teamPage">
 <h1>Teams</h1>
 <br/>
-<h2>International</h2>
+<h3>International</h3>
 <div class="teamTable">
-<ul class="list-group row">
+<ul class="list-group row cl-effect-1">
 <c:forEach items="${teamList}" var="list">
 	<strong>
      <li class="list-group-item col-md-4"><a href="teamServlet?param=${list}">${list}</a></li>

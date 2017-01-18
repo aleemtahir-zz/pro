@@ -6,15 +6,39 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">	
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 <title>Cricmantic</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<link href="dist/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<script src="dist/jquery-3.1.0.js"></script>
-<script src="dist/bootstrap.min.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="css/jquery.incremental-counter.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-3.1.0.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.incremental-counter.min.js"></script>
+<link href="css/font.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/component.css" />
+<script src="js/modernizr.custom.js"></script>
+
+<style>
+h3{
+	color: grey;
+}
+.widget{
+	padding-left: 0px;
+}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function () {
+
+	$(".incremental-counter").incrementalCounter({
+		"digits": 3
+	});
+});
+
+</script>	
 </head>
 <body>
-
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -38,11 +62,37 @@
 <br/><br/>
 <div class="teamPage">
 <h1>${teamName}</h1>
-<br/>
-
+</br>
+<div class="container-fluid">
+<div class="row content" >           
+	<div class="widget col-sm-3">
+		<strong><h3>Total Runs </h3></strong>
+		</br>
+		<div class="incremental-counter" data-value="${runs}"></div>
+	</div>
+	
+	<div class="widget col-sm-3">
+		<strong><h3>Total Sixes </h3></strong>
+		</br>
+		<div class="incremental-counter" data-value="${sixes}"></div>	      
+	</div>
+	<div class="widget col-sm-3">
+		<strong><h3>Total Fours </h3></strong>
+		</br>
+		<div class="incremental-counter" data-value="${fours}"></div>
+	</div>
+	<div class="widget col-sm-3">
+		<strong><h3>Total Wickets </h3></strong>
+		</br>
+		<div class="incremental-counter" data-value="${wickets}"></div>
+	</div>
+	</div>
+</div>
+</br>
+</br>
 <h3>Players</h3>
 <div class="teamTable">
-<ul class="list-group row">
+<ul class="list-group row cl-effect-1">
 <c:forEach items="${playerList}" var="list">
 	<strong>
      <li class="list-group-item col-md-4"><a href="playerServlet?name=${list}">${list}</a></li>
@@ -50,6 +100,7 @@
 </c:forEach>
 </ul>
 </div>
+
 </div>
 </body>
 </html>

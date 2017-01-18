@@ -39,13 +39,49 @@ public class teamServlet extends HttpServlet {
 					"select distinct "+param1+" where { " + 
 					"demo:"+TeamName+" demo:hasPlayer ?player .}";
 					
-			try {
-				list1 = com.cricmantic.functions.graphQuery.getOneList(query, param1);
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			list1 = com.cricmantic.functions.graphQuery.getOneList(query, param1);
 			request.setAttribute("playerList", list1);
+			
+			int i;
+			query = "prefix " + uri +
+	                "select (sum(?score) as ?count) where { " + 
+					"demo:"+TeamName+" demo:hasPlayer ?player." +
+					"?ball demo:ballBatsman ?player."  +
+	                "?ball demo:playerScore ?score. } ";
+					
+			i = com.cricmantic.functions.graphQuery.getSum(query);
+			request.setAttribute("runs", i);
+			
+			query = "prefix " + uri +
+	                "select (count(?ball) as ?count) where { " + 
+					"demo:"+TeamName+" demo:hasPlayer ?player." +
+					"?ball demo:ballBatsman ?player."  +
+	                "?ball demo:event ?event."+
+	                "FILTER(regex(str(?event), 'SIX')) } ";
+					
+			i = com.cricmantic.functions.graphQuery.getSum(query);
+			request.setAttribute("sixes", i);
+			
+			query = "prefix " + uri +
+	                "select (count(?ball) as ?count) where { " + 
+					"demo:"+TeamName+" demo:hasPlayer ?player." +
+					"?ball demo:ballBatsman ?player."  +
+	                "?ball demo:event ?event."+
+	                "FILTER(regex(str(?event), 'FOUR')) } ";
+					
+			i = com.cricmantic.functions.graphQuery.getSum(query);
+			request.setAttribute("fours", i);
+			
+			query = "prefix " + uri +
+	                "select (count(?ball) as ?count) where { " + 
+					"demo:"+TeamName+" demo:hasPlayer ?player." +
+					"?ball demo:ballBowler ?player."  +
+	                "?ball demo:event ?event."+
+	                "FILTER(regex(str(?event), 'OUT')) } ";
+					
+			i = com.cricmantic.functions.graphQuery.getSum(query);
+			request.setAttribute("wickets", i);
+
 			request.setAttribute("teamName", TeamName);
 			request.getRequestDispatcher("team.jsp").forward(request, response);
 		}

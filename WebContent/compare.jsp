@@ -8,12 +8,16 @@
         <meta charset="UTF-8">
         <title>Players Comparison</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="circle.css" rel="stylesheet" type="text/css"/>
-        <link href="spin.css" rel="stylesheet" type="text/css"/>
-        <link href="dist/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="dist/jquery-3.1.0.js"></script>
-        <script src="dist/bootstrap.min.js"></script>
-        <script src="dist/jquery.spincrement.min.js"></script>
+        <link href="css/circle.css" rel="stylesheet" type="text/css"/>
+        <link href="css/spin.css" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery-3.1.0.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.spincrement.min.js"></script>
+        <link href="css/font.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<script src="js/modernizr.custom.js"></script>
         <style>
 			.container-fluid{
 				padding-top: 100px;
@@ -81,11 +85,13 @@
 			$(".dropdown-menu li a#dropdownList1").on('click', function(e) {
 				var playerName = $(this).html();
 				  console.log(playerName);
+				  $("#player1").html(playerName);
 				  onClickDropdown(playerName, "first");
 				});
 			$(".dropdown-menu li a#dropdownList2").on('click', function(e) {
 				var playerName = $(this).html();
 				  console.log(playerName);
+				  $("#player2").html(playerName);
 				  onClickDropdown(playerName, "second");
 				});
 			//ScoreBar
@@ -136,7 +142,7 @@
 					</div>
 					
 					<div class="col-sm-4">
-						<h1 id="heading">Career Statistics</h1>
+						<h1>Career Statistics</h1>
 					</div>
 
 					<div class="dropdown size col-sm-4" >
@@ -151,7 +157,21 @@
 					</div>
 
 			
-				<br><br>
+				<br>
+				
+				<div class="row content">           
+					<div class="progress_size col-sm-5">
+						<strong><h2 id="player1"></h2></strong>	
+					</div>
+					
+					<div class="attribute col-sm-2">
+						      
+					</div>
+					<div class="progress_size col-sm-5">
+						<strong><h2 id="player2"></h2></strong>
+					</div>
+					</div>
+				<br>
 				
 				<div class="row content">           
 					<div class="progress_size col-sm-5">

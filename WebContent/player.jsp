@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="style.css">
 <title>Cricmantic</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link href="dist/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<script src="dist/jquery-3.1.0.js"></script>
+<script src="dist/bootstrap.min.js"></script>
 <script src="dist/progressbar.min.js"></script>
 
 
@@ -294,6 +295,7 @@ $(document).ready(function () {
         <li class="active"><a href="http://localhost:8080/Pro/">Home</a></li>
         <li><a href="#about">Player</a></li>
         <li><a href="http://localhost:8080/Pro/teamServlet">Team</a></li>
+        <li><a href="http://localhost:8080/Pro/comparisonServlet">Comaprison</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

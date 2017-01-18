@@ -1,0 +1,14 @@
+.circle {
+  background-color: #2E86C1;
+  width: 100px;
+  height: 100px;
+  line-height: 8.5em;
+  border-radius: 70%; /* the magic */
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 10px auto 0;
+  
+}

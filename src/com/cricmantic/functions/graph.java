@@ -51,7 +51,7 @@ public class graph {
         connection.clear();
         graph test = new graph(connection);
         
-        //test.loadData();
+        test.loadData();
         connection.close();
 	}
 	

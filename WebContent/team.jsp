@@ -8,16 +8,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">	
 <link rel="stylesheet" href="css/style.css">
 <title>Cricmantic</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="css/jquery.incremental-counter.css" rel="stylesheet" type="text/css">
-<script src="js/jquery-3.1.0.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.incremental-counter.min.js"></script>
 <link href="css/font.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-<link rel="stylesheet" type="text/css" href="css/component.css" />
-<script src="js/modernizr.custom.js"></script>
+<link href="css/normalize.css" rel="stylesheet" type="text/css" />
+<link href="css/component.css" rel="stylesheet" type="text/css" />
+
 
 <style>
 h3{
@@ -26,17 +22,7 @@ h3{
 .widget{
 	padding-left: 0px;
 }
-</style>
-
-<script type="text/javascript">
-$(document).ready(function () {
-
-	$(".incremental-counter").incrementalCounter({
-		"digits": 3
-	});
-});
-
-</script>	
+</style>	
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -102,5 +88,20 @@ $(document).ready(function () {
 </div>
 
 </div>
+
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.incremental-counter.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+
+	$(".incremental-counter").incrementalCounter({
+		"digits": 3
+	});
+});
+
+</script>
 </body>
 </html>

@@ -5,275 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 <title>Cricmantic</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<link href="dist/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<script src="dist/jquery-3.1.0.js"></script>
-<script src="dist/bootstrap.min.js"></script>
-<script src="dist/progressbar.min.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
-
-<script type="text/javascript">
-
-var chartData1 = {};
-var chartData2 = {};
-
-function respondCanvas(ctx, chartData) {             
-    //Call a function to redraw other content (texts, images etc)
-    var ctx1 = document.getElementById("myChart1").getContext("2d");
-    var myChart1 = new Chart(ctx1, {
-    	
-        type: 'horizontalBar',
-        data: chartData1,
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            },
-            legend: {
-                display: false
-            },
-            tooltips: {
-                callbacks: {
-                   label: function(tooltipItem) {
-                          return tooltipItem.yLabel;
-                   }
-                }
-            }
-        }
-    });
-}
-
-function respondCanvas2() {             
-    //Call a function to redraw other content (texts, images etc)
-    var ctx2 = document.getElementById("myChart2").getContext("2d");
-    var myChart1 = new Chart(ctx2, {
-    	
-        type: 'horizontalBar',
-        data: chartData2,
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            },
-            legend: {
-                display: false
-            },
-            tooltips: {
-                callbacks: {
-                   label: function(tooltipItem) {
-                          return tooltipItem.yLabel;
-                   }
-                }
-            }
-        }
-    });
-}
-
-var GetChartData = function () {
-    $.ajax({
-        url: 'playerServlet?method=makegraph',
-        data:{
-        	input : $("input[name=players]:checked").val()
-        	},
-        method: 'GET',
-        dataType: 'json',
-        async:false,
-        success: function (d) {
-           console.log(d);
-           
-           chartData1 = {
-                   labels: d.yAxis, 
-                   datasets: [
-                       {
-                           data: d.xAxis,
-                           //hoverBackgroundColor: 'rgba(255, 206, 86, 1)',
-                           //label: "My First dataset",
-                           fill: false,
-                           lineTension: 0.1,
-                           backgroundColor: [
-                        	   'rgba(255,99,132,1)',
-                               'rgba(54, 162, 235, 1)',
-                               'rgba(255, 206, 86, 1)',
-                               'rgba(75, 192, 192, 1)',
-                               'rgba(153, 102, 255, 1)',
-                               'rgba(255,99,132,1)',
-                               'rgba(54, 162, 235, 1)',
-                               'rgba(255, 206, 86, 1)',
-                               'rgba(75, 192, 192, 1)',
-                               'rgba(153, 102, 255, 1)',
-                               'rgba(255, 159, 64, 1)'
-                           ],
-                           borderColor: [
-                               'rgba(255,99,132,1)',
-                               'rgba(54, 162, 235, 1)',
-                               'rgba(255, 206, 86, 1)',
-                               'rgba(75, 192, 192, 1)',
-                               'rgba(153, 102, 255, 1)',
-                               'rgba(255,99,132,1)',
-                               'rgba(54, 162, 235, 1)',
-                               'rgba(255, 206, 86, 1)',
-                               'rgba(75, 192, 192, 1)',
-                               'rgba(153, 102, 255, 1)',	
-                               'rgba(255, 159, 64, 1)'
-                           ],
-                           borderWidth: 1
-                       }
-                   ]
-               };
-               respondCanvas();
-        },
-        error:function(){
-	           alert('Chart1 error');
-	         }
-    });
-};
-var GetChartData2 = function () {
-    $.ajax({
-        url: 'playerServlet?method=makegraph',
-        data:{input : $("input[name=team]:checked").val()},
-        method: 'GET',
-        dataType: 'json',
-        async:false,
-        success: function (d) {
-        	console.log(d);
-           chartData2 = {
-                   labels: d.yAxis, 
-                   datasets: [
-                       {
-                           data: d.xAxis,
-                           //hoverBackgroundColor: 'rgba(255, 206, 86, 1)',
-                           //label: false,
-                           fill: false,
-                           lineTension: 0.1,
-                           backgroundColor: [
-                        	   'rgba(255,99,132,1)',
-                               'rgba(54, 162, 235, 1)',
-                               'rgba(255, 206, 86, 1)',
-                               'rgba(75, 192, 192, 1)',
-                               'rgba(153, 102, 255, 1)',
-                               'rgba(255, 159, 64, 1)'
-                           ],
-                           borderColor: [
-                               'rgba(255,99,132,1)',
-                               'rgba(54, 162, 235, 1)',
-                               'rgba(255, 206, 86, 1)',
-                               'rgba(75, 192, 192, 1)',
-                               'rgba(153, 102, 255, 1)',
-                               'rgba(255, 159, 64, 1)'
-                           ],
-                           borderWidth: 1
-                       }
-                   ]
-               };
-               respondCanvas2();
-        },
-        error:function(){
-	           alert('Chart2 error');
-	         }
-    });
-};
-
-var playername = "${playerName}";
-function GetProgressBarData(event, elementId){
-	$.ajax({
-        url: 'playerServlet?method=makebar',
-        data:{
-        	bar : playername,
-        	param : event
-        	},	
-        method: 'GET',
-        dataType: 'json',
-        async:false,
-        success: function (data) {
-        	console.log(data);
-        	makeScores(elementId,data);
-        },
-        error:function(){
-	           alert('Progress Bar error');
-	         }
-    });
-}
-
-function makeScores(ID,data){
-	// Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
-	var container = document.getElementById(ID);
-	var bar = new ProgressBar.Circle(container, {
-	  color: '#0095B6',
-	  // This has to be the same size as the maximum width to
-	  // prevent clipping
-	  strokeWidth: 4,
-	  trailWidth: 1,
-	  easing: 'easeInOut',
-	  duration: 1400,
-	  text: {
-	    autoStyleContainer: false
-	  },
-	  from: { color: '#aaa', width: 1 },
-	  to: { color: '#0095B6', width: 4 },
-	  // Set default step function for all animate calls
-	  step: function(state, circle) {
-	    circle.path.setAttribute('stroke', state.color);
-	    circle.path.setAttribute('stroke-width', state.width);
-
-	    var value = Math.round(circle.value() * data);
-	    if (value === 0) {
-	      circle.setText('');
-	    } else {
-	      circle.setText(value);
-	    }
-
-	  }
-	});
-	bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-	bar.text.style.fontSize = '2rem';
-
-	bar.animate(1.0);  // Number from 0.0 to 1.0
-}
-
-function insertPic(){
-    var img = document.getElementById("picID");
-    img.src = "pics/"+playername+".jpeg";
-
-    //src.appendChild(img);
-}
-
-
-
-$(document).ready(function () {
-
-	$("input[id='RunsP']").prop('checked', true);
-	$("input[id='RunsT']").prop('checked', true);
-	 if( $("input[name=players]").change(function (){
-		 $("input[name=players]").prop('checked', false);
-		 $(this).prop('checked', true);
-		 GetChartData();
-	})
-	);
-	 if( $("input[name=team]").change(function (){
-		 $("input[name=team]").prop('checked', false);
-		 $(this).prop('checked', true);
-		 GetChartData2();
-	})
-	); 
-	
-
-	GetChartData();
-	GetChartData2();
-	GetProgressBarData("runs","scoreContainer1");
-	GetProgressBarData("runs","scoreContainer2");
-	GetProgressBarData("4s", "scoreContainer3");
-	GetProgressBarData("6s", "scoreContainer4");
-	
-});
-</script>
 <style>
 		
 	</style>
@@ -387,5 +122,270 @@ $(document).ready(function () {
 
 		</div>
 		</div>
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/progressbar.min.js"></script>
+		<script src="js/Chart.min.js"></script>
+		
+		<script type="text/javascript">
+		var chartData1 = {};
+		var chartData2 = {};
+		
+		function respondCanvas(ctx, chartData) {             
+		    //Call a function to redraw other content (texts, images etc)
+		    var ctx1 = document.getElementById("myChart1").getContext("2d");
+		    var myChart1 = new Chart(ctx1, {
+		    	
+		        type: 'horizontalBar',
+		        data: chartData1,
+		        options: {
+		            scales: {
+		                yAxes: [{
+		                    ticks: {
+		                        beginAtZero:true
+		                    }
+		                }]
+		            },
+		            legend: {
+		                display: false
+		            },
+		            tooltips: {
+		                callbacks: {
+		                   label: function(tooltipItem) {
+		                          return tooltipItem.yLabel;
+		                   }
+		                }
+		            }
+		        }
+		    });
+		}
+		
+		function respondCanvas2() {             
+		    //Call a function to redraw other content (texts, images etc)
+		    var ctx2 = document.getElementById("myChart2").getContext("2d");
+		    var myChart1 = new Chart(ctx2, {
+		    	
+		        type: 'horizontalBar',
+		        data: chartData2,
+		        options: {
+		            scales: {
+		                yAxes: [{
+		                    ticks: {
+		                        beginAtZero:true
+		                    }
+		                }]
+		            },
+		            legend: {
+		                display: false
+		            },
+		            tooltips: {
+		                callbacks: {
+		                   label: function(tooltipItem) {
+		                          return tooltipItem.yLabel;
+		                   }
+		                }
+		            }
+		        }
+		    });
+		}
+		
+		var GetChartData = function () {
+		    $.ajax({
+		        url: 'playerServlet?method=makegraph',
+		        data:{
+		        	input : $("input[name=players]:checked").val()
+		        	},
+		        method: 'GET',
+		        dataType: 'json',
+		        async:false,
+		        success: function (d) {
+		           console.log(d);
+		           
+		           chartData1 = {
+		                   labels: d.yAxis, 
+		                   datasets: [
+		                       {
+		                           data: d.xAxis,
+		                           //hoverBackgroundColor: 'rgba(255, 206, 86, 1)',
+		                           //label: "My First dataset",
+		                           fill: false,
+		                           lineTension: 0.1,
+		                           backgroundColor: [
+		                        	   'rgba(255,99,132,1)',
+		                               'rgba(54, 162, 235, 1)',
+		                               'rgba(255, 206, 86, 1)',
+		                               'rgba(75, 192, 192, 1)',
+		                               'rgba(153, 102, 255, 1)',
+		                               'rgba(255,99,132,1)',
+		                               'rgba(54, 162, 235, 1)',
+		                               'rgba(255, 206, 86, 1)',
+		                               'rgba(75, 192, 192, 1)',
+		                               'rgba(153, 102, 255, 1)',
+		                               'rgba(255, 159, 64, 1)'
+		                           ],
+		                           borderColor: [
+		                               'rgba(255,99,132,1)',
+		                               'rgba(54, 162, 235, 1)',
+		                               'rgba(255, 206, 86, 1)',
+		                               'rgba(75, 192, 192, 1)',
+		                               'rgba(153, 102, 255, 1)',
+		                               'rgba(255,99,132,1)',
+		                               'rgba(54, 162, 235, 1)',
+		                               'rgba(255, 206, 86, 1)',
+		                               'rgba(75, 192, 192, 1)',
+		                               'rgba(153, 102, 255, 1)',	
+		                               'rgba(255, 159, 64, 1)'
+		                           ],
+		                           borderWidth: 1
+		                       }
+		                   ]
+		               };
+		               respondCanvas();
+		        },
+		        error:function(){
+			           alert('Chart1 error');
+			         }
+		    });
+		};
+		var GetChartData2 = function () {
+		    $.ajax({
+		        url: 'playerServlet?method=makegraph',
+		        data:{input : $("input[name=team]:checked").val()},
+		        method: 'GET',
+		        dataType: 'json',
+		        async:false,
+		        success: function (d) {
+		        	console.log(d);
+		           chartData2 = {
+		                   labels: d.yAxis, 
+		                   datasets: [
+		                       {
+		                           data: d.xAxis,
+		                           //hoverBackgroundColor: 'rgba(255, 206, 86, 1)',
+		                           //label: false,
+		                           fill: false,
+		                           lineTension: 0.1,
+		                           backgroundColor: [
+		                        	   'rgba(255,99,132,1)',
+		                               'rgba(54, 162, 235, 1)',
+		                               'rgba(255, 206, 86, 1)',
+		                               'rgba(75, 192, 192, 1)',
+		                               'rgba(153, 102, 255, 1)',
+		                               'rgba(255, 159, 64, 1)'
+		                           ],
+		                           borderColor: [
+		                               'rgba(255,99,132,1)',
+		                               'rgba(54, 162, 235, 1)',
+		                               'rgba(255, 206, 86, 1)',
+		                               'rgba(75, 192, 192, 1)',
+		                               'rgba(153, 102, 255, 1)',
+		                               'rgba(255, 159, 64, 1)'
+		                           ],
+		                           borderWidth: 1
+		                       }
+		                   ]
+		               };
+		               respondCanvas2();
+		        },
+		        error:function(){
+			           alert('Chart2 error');
+			         }
+		    });
+		};
+		
+		var playername = "${playerName}";
+		function GetProgressBarData(event, elementId){
+			$.ajax({
+		        url: 'playerServlet?method=makebar',
+		        data:{
+		        	bar : playername,
+		        	param : event
+		        	},	
+		        method: 'GET',
+		        dataType: 'json',
+		        async:false,
+		        success: function (data) {
+		        	console.log(data);
+		        	makeScores(elementId,data);
+		        },
+		        error:function(){
+			           alert('Progress Bar error');
+			         }
+		    });
+		}
+		
+		function makeScores(ID,data){
+			// Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
+			var container = document.getElementById(ID);
+			var bar = new ProgressBar.Circle(container, {
+			  color: '#0095B6',
+			  // This has to be the same size as the maximum width to
+			  // prevent clipping
+			  strokeWidth: 4,
+			  trailWidth: 1,
+			  easing: 'easeInOut',
+			  duration: 1400,
+			  text: {
+			    autoStyleContainer: false
+			  },
+			  from: { color: '#aaa', width: 1 },
+			  to: { color: '#0095B6', width: 4 },
+			  // Set default step function for all animate calls
+			  step: function(state, circle) {
+			    circle.path.setAttribute('stroke', state.color);
+			    circle.path.setAttribute('stroke-width', state.width);
+		
+			    var value = Math.round(circle.value() * data);
+			    if (value === 0) {
+			      circle.setText('');
+			    } else {
+			      circle.setText(value);
+			    }
+		
+			  }
+			});
+			bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+			bar.text.style.fontSize = '2rem';
+		
+			bar.animate(1.0);  // Number from 0.0 to 1.0
+		}
+		
+		function insertPic(){
+		    var img = document.getElementById("picID");
+		    img.src = "pics/"+playername+".jpeg";
+		
+		    //src.appendChild(img);
+		}
+		
+		
+		
+		$(document).ready(function () {
+		
+			$("input[id='RunsP']").prop('checked', true);
+			$("input[id='RunsT']").prop('checked', true);
+			 if( $("input[name=players]").change(function (){
+				 $("input[name=players]").prop('checked', false);
+				 $(this).prop('checked', true);
+				 GetChartData();
+			})
+			);
+			 if( $("input[name=team]").change(function (){
+				 $("input[name=team]").prop('checked', false);
+				 $(this).prop('checked', true);
+				 GetChartData2();
+			})
+			); 
+			
+		
+			GetChartData();
+			GetChartData2();
+			GetProgressBarData("runs","scoreContainer1");
+			GetProgressBarData("runs","scoreContainer2");
+			GetProgressBarData("4s", "scoreContainer3");
+			GetProgressBarData("6s", "scoreContainer4");
+			
+		});
+		</script>
     </body>
 </html>

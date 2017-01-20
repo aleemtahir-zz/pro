@@ -97,9 +97,9 @@ public class comparisonServlet extends HttpServlet {
 	private void loadPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<String> list1 = new ArrayList<String>();
 		
-		String param1 = "?player";
+		String param1 = "?team";
 		String query = "prefix " + uri +
-				"select distinct ?player where { " + 
+				"select distinct ?team where { " + 
 				"?team demo:hasPlayer ?player .}";
 				
 		try {

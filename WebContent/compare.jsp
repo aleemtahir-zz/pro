@@ -10,14 +10,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/circle.css" rel="stylesheet" type="text/css"/>
         <link href="css/spin.css" rel="stylesheet" type="text/css"/>
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="js/jquery-3.1.0.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.spincrement.min.js"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>  
+        <link rel="stylesheet" href="css/bootstrap-submenu.min.css">
         <link href="css/font.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
-		<script src="js/modernizr.custom.js"></script>
+		
         <style>
 			.container-fluid{
 				padding-top: 100px;
@@ -42,70 +40,61 @@
 				padding-left: 0px;
 				padding-right: 0px;
 			}
-		</style>
-		<script>
-		
-		function setValues1(record){
-			$("#runs1").html(record[0]);
-			$("#sixes1").html(record[1]);
-			$("#fours1").html(record[2]);
-			$("#wickets1").html(record[3]);
-		}
-		
-		function setValues2(record){
-			$("#runs2").html(record[0]);
-			$("#sixes2").html(record[1]);
-			$("#fours2").html(record[2]);
-			$("#wickets2").html(record[3]);
-		}
-		
-		function onClickDropdown(param1, param2){
-			$.ajax({
-			    url: 'comparisonServlet', // the url you want to send it to
-			    data: {
-			    	name: param1,
-			    	dropdown: param2
-			    },
-			    method: 'GET',
-		        dataType: 'json',
-		        async:false,
-			    success: function(data) {
-			    	console.log(data);
-			    	if(data.flag == "first"){
-			    		setValues1(data.playerRecord);
-			    	}
-			    	else{
-			    		setValues2(data.playerRecord);
-			    	}
-			    }
-			  });
-		};
-		
-		$(document).ready(function () {
-			$(".dropdown-menu li a#dropdownList1").on('click', function(e) {
-				var playerName = $(this).html();
-				  console.log(playerName);
-				  $("#player1").html(playerName);
-				  onClickDropdown(playerName, "first");
-				});
-			$(".dropdown-menu li a#dropdownList2").on('click', function(e) {
-				var playerName = $(this).html();
-				  console.log(playerName);
-				  $("#player2").html(playerName);
-				  onClickDropdown(playerName, "second");
-				});
-			//ScoreBar
-			$('.spincrement').spincrement({
-				from: 0,
-				decimalPlaces: 0,
-				duration: 2000,
-			});
 			
-			//$("#heading").html("Hello World");
-
-		});
-		</script>
-    </head>
+			
+			//Sub-menu toggle
+			
+			.dropdown-submenu {
+			    position: relative;
+			}
+			
+			.dropdown-submenu>.dropdown-menu {
+			    top: 0;
+			    left: 100%;
+			    margin-top: -6px;
+			    margin-left: -1px;
+			    -webkit-border-radius: 0 6px 6px 6px;
+			    -moz-border-radius: 0 6px 6px;
+			    border-radius: 0 6px 6px 6px;
+			}
+			
+			.dropdown-submenu:hover>.dropdown-menu {
+			    display: block;
+			}
+			
+			.dropdown-submenu>a:after {
+			    display: block;
+			    content: " ";
+			    float: right;
+			    width: 0;
+			    height: 0;
+			    border-color: transparent;
+			    border-style: solid;
+			    border-width: 5px 0 5px 5px;
+			    border-left-color: #ccc;
+			    margin-top: 5px;
+			    margin-right: -10px;
+			}
+			
+			.dropdown-submenu:hover>a:after {
+			    border-left-color: #fff;
+			}
+			
+			.dropdown-submenu.pull-left {
+			    float: none;
+			}
+			
+			.dropdown-submenu.pull-left>.dropdown-menu {
+			    left: -100%;
+			    margin-left: 10px;
+			    -webkit-border-radius: 6px 0 6px 6px;
+			    -moz-border-radius: 6px 0 6px 6px;
+			    border-radius: 6px 0 6px 6px;
+			}
+			
+			
+		</style>
+		    </head>
     <body>
         
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -136,7 +125,12 @@
 						<span class="caret"></span></button>
 						<ul class="dropdown-menu">
 							<c:forEach items="${playerList}" var="list">
-							<li role="presentation"><a id="dropdownList1" role="menuitem" tabindex="-1" href="#">${list}</a></li>
+							<li class="dropdown-submenu"><a class="test" id="dropdownList2" role="menuitem" tabindex="-1" href="#">${list}</a>
+								<ul class="dropdown-menu">
+						          <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+						          <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+						        </ul>
+							</li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -148,9 +142,14 @@
 					<div class="dropdown size col-sm-4" >
 						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Player
 						<span class="caret"></span></button>
-						<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+						<ul class="dropdown-menu">
 							<c:forEach items="${playerList}" var="list">
-							<li role="presentation"><a id="dropdownList2" role="menuitem" tabindex="-1" href="#">${list}</a></li>
+							<li class="dropdown-submenu"><a class="test" id="dropdownList2" role="menuitem" tabindex="-1" href="#">${list}</a>
+								<ul class="dropdown-menu">
+						          <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+						          <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+						        </ul>
+							</li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -258,5 +257,80 @@
 				<br>
              
         </div> <!-- Container ends -->
+        <script src="js/jquery-3.1.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-submenu.min.js" defer></script>
+        <script src="js/jquery.spincrement.min.js"></script>
+        <script src="js/modernizr.custom.js"></script>
+        <script>
+		
+		function setValues1(record){
+			$("#runs1").html(record[0]);
+			$("#sixes1").html(record[1]);
+			$("#fours1").html(record[2]);
+			$("#wickets1").html(record[3]);
+		}
+		
+		function setValues2(record){
+			$("#runs2").html(record[0]);
+			$("#sixes2").html(record[1]);
+			$("#fours2").html(record[2]);
+			$("#wickets2").html(record[3]);
+		}
+		
+		function onClickDropdown(param1, param2){
+			$.ajax({
+			    url: 'comparisonServlet', // the url you want to send it to
+			    data: {
+			    	name: param1,
+			    	dropdown: param2
+			    },
+			    method: 'GET',
+		        dataType: 'json',
+		        async:false,
+			    success: function(data) {
+			    	console.log(data);
+			    	if(data.flag == "first"){
+			    		setValues1(data.playerRecord);
+			    	}
+			    	else{
+			    		setValues2(data.playerRecord);
+			    	}
+			    }
+			  });
+		};
+		
+		$(document).ready(function () {
+			
+			
+			$(".dropdown-menu li a#dropdownList1").on('click', function(e) {
+				var playerName = $(this).html();
+				  console.log(playerName);
+				  $("#player1").html(playerName);
+				  onClickDropdown(playerName, "first");
+				});
+			$(".dropdown-menu li a#dropdownList2").on('click', function(e) {
+				var playerName = $(this).html();
+				  console.log(playerName);
+				  $("#player2").html(playerName);
+				  onClickDropdown(playerName, "second");
+				});
+			//ScoreBar
+			$('.spincrement').spincrement({
+				from: 0,
+				decimalPlaces: 0,
+				duration: 2000,
+			});
+			
+			
+			$(".dropdown-toggle").dropdown();
+			/* $(".dropdown-menu li a#dropdownList1").mouseover(function() {
+				   console.log($(this).text());
+				}); */
+			//$("#heading").html("Hello World");
+
+		});
+		</script>
+        
     </body>
 </html>

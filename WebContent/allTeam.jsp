@@ -6,16 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">	
-<link rel="stylesheet" href="css/style.css">
 <title>Cricmantic</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<link href="css/style.css" rel="stylesheet">
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<script src="js/jquery-3.1.0.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <link href="css/font.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-<link rel="stylesheet" type="text/css" href="css/component.css" />
-<script src="js/modernizr.custom.js"></script>
+<link href="css/normalize.css" rel="stylesheet" type="text/css" />
+<link href="css/component.css" rel="stylesheet" type="text/css" />
 
 <style>
 h3{
@@ -64,5 +60,12 @@ h3{
 
 </div>
 </div>
+
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-submenu.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="js/jquery.spincrement.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
 </body>
 </html>

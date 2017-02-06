@@ -125,11 +125,7 @@
 						<span class="caret"></span></button>
 						<ul class="dropdown-menu">
 							<c:forEach items="${playerList}" var="list">
-							<li class="dropdown-submenu"><a class="test" id="dropdownList2" role="menuitem" tabindex="-1" href="#">${list}</a>
-								<ul class="dropdown-menu">
-						          <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
-						          <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
-						        </ul>
+							<li><a class="dropdown-toggle" data-toggle="dropdown" id="dropdownList1" role="menuitem" tabindex="-1" href="#">${list}</a>
 							</li>
 							</c:forEach>
 						</ul>
@@ -144,11 +140,7 @@
 						<span class="caret"></span></button>
 						<ul class="dropdown-menu">
 							<c:forEach items="${playerList}" var="list">
-							<li class="dropdown-submenu"><a class="test" id="dropdownList2" role="menuitem" tabindex="-1" href="#">${list}</a>
-								<ul class="dropdown-menu">
-						          <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
-						          <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
-						        </ul>
+							<li><a class="dropdown-toggle" data-toggle="dropdown" id="dropdownList2" role="menuitem" tabindex="-1" href="#">${list}</a>
 							</li>
 							</c:forEach>
 						</ul>
@@ -300,10 +292,32 @@
 			  });
 		};
 		
+		function loadSubMenu(param1, param2){
+			$.ajax({
+			    url: 'comparisonServlet?method:submenu', // the url you want to send it to
+			    data: {
+			    	name: param1,
+			    	dropdown: param2
+			    },
+			    method: 'GET',
+		        dataType: 'json',
+		        async:false,
+			    success: function(data) {
+			    	console.log(data);
+			    	if(data.flag == "first"){
+			    		setValues1(data.playerRecord);
+			    	}
+			    	else{
+			    		setValues2(data.playerRecord);
+			    	}
+			    }
+			  });
+		};
+		
 		$(document).ready(function () {
+			$(".dropdown-toggle").dropdown();
 			
-			
-			$(".dropdown-menu li a#dropdownList1").on('click', function(e) {
+			 $(".dropdown-menu li a#dropdownList1").on('click', function(e) {
 				var playerName = $(this).html();
 				  console.log(playerName);
 				  $("#player1").html(playerName);
@@ -314,7 +328,7 @@
 				  console.log(playerName);
 				  $("#player2").html(playerName);
 				  onClickDropdown(playerName, "second");
-				});
+				}); 
 			//ScoreBar
 			$('.spincrement').spincrement({
 				from: 0,
@@ -323,10 +337,11 @@
 			});
 			
 			
-			$(".dropdown-toggle").dropdown();
+			
 			/* $(".dropdown-menu li a#dropdownList1").mouseover(function() {
-				   console.log($(this).text());
-				}); */
+				var team = $(this).text();
+				loadSubMenu(team, "first");
+				}); */ 
 			//$("#heading").html("Hello World");
 
 		});

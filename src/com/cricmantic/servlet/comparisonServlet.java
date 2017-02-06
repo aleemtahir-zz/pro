@@ -29,57 +29,11 @@ public class comparisonServlet extends HttpServlet {
 		response.setContentType("text/html");
 		
 		try{
-			String player = request.getParameter("name");
-			String flag = request.getParameter("dropdown");
-			if(!(player.equals(null))){
+			
+			String method = request.getParameter("method");
+			if(!(method.equals(null))){
 				
-				JsonObject json = new JsonObject();
-				JsonArray list = new JsonArray();
-
-				int i;
-				String query;
-				
-				query = "prefix " + uri +
-		                "select (sum(?score) as ?count) where { " + 
-						"?ball demo:ballBatsman "+"demo:"+ player + "."  +
-		                "?ball demo:playerScore ?score. } ";
-						
-				i = com.cricmantic.functions.graphQuery.getSum(query);
-				list.add(i);
-					
-				query = "prefix " + uri +
-		                "select (count(?ball) as ?count)  where { " +
-						"?ball demo:ballBowler ?player."+
-						"?ball demo:ballBatsman "+"demo:"+ player + "."  +
-						"?ball demo:event ?event."+
-		                "FILTER(regex(str(?event), 'SIX')) } ";
-				
-				i = com.cricmantic.functions.graphQuery.getSum(query);
-				list.add(i);
-				
-				query = "prefix " + uri +
-		                "select (count(?ball) as ?count)  where { " +
-						"?ball demo:ballBowler ?player."+
-						"?ball demo:ballBatsman "+"demo:"+ player + "."  +
-						"?ball demo:event ?event."+
-		                "FILTER(regex(str(?event), 'FOUR')) } ";
-				
-				i = com.cricmantic.functions.graphQuery.getSum(query);
-				list.add(i);
-				
-				query = "prefix " + uri +
-		                "select (count(?ball) as ?count)  where { " +
-						"?ball demo:ballBowler ?player."+
-						"?ball demo:ballBowler "+"demo:"+ player + "."  +
-						"?ball demo:event ?event."+
-		                "FILTER(regex(str(?event), 'OUT')) } ";
-				
-				i = com.cricmantic.functions.graphQuery.getSum(query);
-				list.add(i);
-				
-				json.put("playerRecord", list);
-				json.put("flag", flag);
-				out.print(json);
+				loadSubmenu(request, response);
 			}
 			else{
 				loadPage(request, response);}
@@ -87,6 +41,98 @@ public class comparisonServlet extends HttpServlet {
 			catch(Exception e){
 				loadPage(request, response);
 			}
+	}
+
+	private void loadSubmenu(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/html");
+		
+		String team = request.getParameter("name");
+		String flag = request.getParameter("dropdown");
+		JsonObject json = new JsonObject();
+		JsonArray list = new JsonArray();
+		
+		ArrayList<String> list1 = new ArrayList<String>();
+		
+		String param1 = "?player";
+		String query = "prefix " + uri +
+				"select distinct ?player where { " + 
+				"demo:"+team+" demo:hasPlayer ?player .}";
+				
+		try {
+			list1 = com.cricmantic.functions.graphQuery.getOneList(query, param1);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(int i=0; i<list1.size(); i++)
+		{
+			list.add(list1.get(i));
+			
+		}
+		
+		json.put("players", list);
+		out.print(json);
+		
+	}
+
+	private void loadData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/html");
+		
+		String player = request.getParameter("name");
+		String flag = request.getParameter("dropdown");
+		JsonObject json = new JsonObject();
+		JsonArray list = new JsonArray();
+
+		int i;
+		String query;
+		
+		query = "prefix " + uri +
+                "select (sum(?score) as ?count) where { " + 
+				"?ball demo:ballBatsman "+"demo:"+ player + "."  +
+                "?ball demo:playerScore ?score. } ";
+				
+		i = com.cricmantic.functions.graphQuery.getSum(query);
+		list.add(i);
+			
+		query = "prefix " + uri +
+                "select (count(?ball) as ?count)  where { " +
+				"?ball demo:ballBowler ?player."+
+				"?ball demo:ballBatsman "+"demo:"+ player + "."  +
+				"?ball demo:event ?event."+
+                "FILTER(regex(str(?event), 'SIX')) } ";
+		
+		i = com.cricmantic.functions.graphQuery.getSum(query);
+		list.add(i);
+		
+		query = "prefix " + uri +
+                "select (count(?ball) as ?count)  where { " +
+				"?ball demo:ballBowler ?player."+
+				"?ball demo:ballBatsman "+"demo:"+ player + "."  +
+				"?ball demo:event ?event."+
+                "FILTER(regex(str(?event), 'FOUR')) } ";
+		
+		i = com.cricmantic.functions.graphQuery.getSum(query);
+		list.add(i);
+		
+		query = "prefix " + uri +
+                "select (count(?ball) as ?count)  where { " +
+				"?ball demo:ballBowler ?player."+
+				"?ball demo:ballBowler "+"demo:"+ player + "."  +
+				"?ball demo:event ?event."+
+                "FILTER(regex(str(?event), 'OUT')) } ";
+		
+		i = com.cricmantic.functions.graphQuery.getSum(query);
+		list.add(i);
+		
+		json.put("playerRecord", list);
+		json.put("flag", flag);
+		out.print(json);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -97,7 +143,7 @@ public class comparisonServlet extends HttpServlet {
 	private void loadPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<String> list1 = new ArrayList<String>();
 		
-		String param1 = "?team";
+		String param1 = "?player";
 		String query = "prefix " + uri +
 				"select distinct ?team where { " + 
 				"?team demo:hasPlayer ?player .}";

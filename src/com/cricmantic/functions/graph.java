@@ -61,7 +61,7 @@ public class graph {
         connection.begin();
         connection.add(graph.class.getResourceAsStream("/files/IndPak.rdf"),"urn:base", RDFFormat.RDFXML);
         connection.add(graph.class.getResourceAsStream("/files/PakSl.rdf"),"urn:base", RDFFormat.RDFXML);
-        connection.add(graph.class.getResourceAsStream("/files/1.rdf"),"urn:base", RDFFormat.RDFXML);
+        //connection.add(graph.class.getResourceAsStream("/files/1.rdf"),"urn:base", RDFFormat.RDFXML);
         //connection.add(FamilyRelationsApp.class.getResourceAsStream("/family-data.ttl"), "urn:base", RDFFormat.TURTLE);
         connection.commit();
         System.out.println("# Loaded ontology and data");
@@ -82,19 +82,19 @@ public class graph {
         System.out.println("# Data is inserted");
     }
 	
-	public static ResultSet execSelectAndPrint(String queryString) {
-		List<RowObject> results = new ArrayList<RowObject>();
-		
+	public static void execSelectAndPrint(String queryString) {		
 		String endpoint = "http://localhost:7200/repositories/cricket";
 		
 		Query query = QueryFactory.create(queryString);
 		QueryExecution q = QueryExecutionFactory.sparqlService(endpoint,
 				query);
 		ResultSet rs = q.execSelect();
+		ResultSetFormatter.out(System.out, rs);
 		
-		return rs;
-		//ResultSetFormatter.out(System.out, results);
-		//int i=0;
+	}
+	
+}
+//int i=0;
 		/*while (rs.hasNext()) {
 			QuerySolution soln = rs.nextSolution();
 			RDFNode node = soln.get("count");
@@ -121,6 +121,3 @@ public class graph {
 		*/
 		//return results;
 		//return i;
-	}
-	
-}

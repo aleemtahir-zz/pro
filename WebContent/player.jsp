@@ -85,7 +85,7 @@
 					<div id="runsContainer">
 						<div id="scoreContainer4" class="scoreContainer"></div>
 						<div id="textid">
-							<span>Sixess</span>
+							<span>Sixes</span>
 						</div>
 					</div>
 					</div>

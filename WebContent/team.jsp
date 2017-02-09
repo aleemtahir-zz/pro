@@ -38,7 +38,7 @@ h3{
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="http://localhost:8080/Pro/">Home</a></li>
-        <li><a href="#about">Player</a></li>
+        <li><a href="http://localhost:8080/Pro/matchServlet">Match</a></li>
         <li><a href="http://localhost:8080/Pro/teamServlet">Team</a></li>
         <li><a href="http://localhost:8080/Pro/comparisonServlet">Comaprison</a></li>
       </ul>

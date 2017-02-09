@@ -28,6 +28,7 @@
 			.dropdown.size{
 				padding-top: 20px;
       			height: 100%;
+      			text-align: center;
 				
 			}
 			.progress_size{
@@ -110,7 +111,7 @@
 		    <div class="collapse navbar-collapse">
 		      <ul class="nav navbar-nav">
 		        <li class="active"><a href="http://localhost:8080/Pro/">Home</a></li>
-		        <li><a href="#about">Player</a></li>
+		        <li><a href="http://localhost:8080/Pro/matchServlet">Match</a></li>
 		        <li><a href="http://localhost:8080/Pro/teamServlet">Team</a></li>
 		        <li><a href="http://localhost:8080/Pro/comparisonServlet">Comaprison</a></li>
 		      </ul>
@@ -123,9 +124,13 @@
 					<div class="dropdown size col-sm-4" >
 						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Player
 						<span class="caret"></span></button>
-						<ul class="dropdown-menu">
+						<ul id="firstDropdown" class="dropdown-menu">
 							<c:forEach items="${playerList}" var="list">
-							<li><a class="dropdown-toggle" data-toggle="dropdown" id="dropdownList1" role="menuitem" tabindex="-1" href="#">${list}</a>
+							<li class="dropdown-submenu">
+								<a class="test" role="menuitem" tabindex="-1" href="#">${list}</a>
+								<ul class="dropdown-menu">
+								
+						        </ul>
 							</li>
 							</c:forEach>
 						</ul>
@@ -138,9 +143,12 @@
 					<div class="dropdown size col-sm-4" >
 						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Player
 						<span class="caret"></span></button>
-						<ul class="dropdown-menu">
+						<ul id="secondDropdown" class="dropdown-menu">
 							<c:forEach items="${playerList}" var="list">
-							<li><a class="dropdown-toggle" data-toggle="dropdown" id="dropdownList2" role="menuitem" tabindex="-1" href="#">${list}</a>
+							<li class="dropdown-submenu"><a class="test" role="menuitem" tabindex="-1" href="#">${list}</a>
+								<ul class="dropdown-menu">
+						          
+						        </ul>
 							</li>
 							</c:forEach>
 						</ul>
@@ -270,65 +278,69 @@
 			$("#wickets2").html(record[3]);
 		}
 		
-		function onClickDropdown(param1, param2){
+				
+		function onClickDropdown(playerName, firstOrSecond){
+			var param1 = playerName,
+				param2 = firstOrSecond;
+			if (firstOrSecond == 'first') {
+				$('#player1').html(playerName);
+			} else {
+				$('#player2').html(playerName);
+			}
 			$.ajax({
 			    url: 'comparisonServlet', // the url you want to send it to
 			    data: {
 			    	name: param1,
-			    	dropdown: param2
+			    	dropdown: param2,
+			    	call: "SubMenu"
 			    },
 			    method: 'GET',
 		        dataType: 'json',
 		        async:false,
 			    success: function(data) {
 			    	console.log(data);
-			    	if(data.flag == "first"){
+			    	if(data.flag == "first") {
+			    		
 			    		setValues1(data.playerRecord);
 			    	}
-			    	else{
+			    	else {
+			    		
 			    		setValues2(data.playerRecord);
 			    	}
 			    }
 			  });
 		};
 		
-		function loadSubMenu(param1, param2){
+		function onHoverDropdown(param1, param2, target){
+			
 			$.ajax({
-			    url: 'comparisonServlet?method:submenu', // the url you want to send it to
+			    url: 'comparisonServlet', // the url you want to send it to
 			    data: {
-			    	name: param1,
-			    	dropdown: param2
+			    	team: param1,
+			    	dropdownTeam: param2,
+			    	call: "MainMenu"
 			    },
 			    method: 'GET',
 		        dataType: 'json',
 		        async:false,
 			    success: function(data) {
-			    	console.log(data);
-			    	if(data.flag == "first"){
-			    		setValues1(data.playerRecord);
-			    	}
-			    	else{
-			    		setValues2(data.playerRecord);
-			    	}
-			    }
+			    	data.playerList.forEach(function(current) {
+			    		var li = document.createElement('li');
+			    		$(li).html('<a tabindex="-1" href="#">' + current + '</a>');
+			    		$(li).click(function() {
+			    			onClickDropdown(current, param2);
+			    		});
+			    		$(target).siblings('.dropdown-menu')[0].append(li);	
+			    	});
+			    },
+			    error: function(){
+			        console.log('error');
+		         }
 			  });
 		};
 		
 		$(document).ready(function () {
-			$(".dropdown-toggle").dropdown();
 			
-			 $(".dropdown-menu li a#dropdownList1").on('click', function(e) {
-				var playerName = $(this).html();
-				  console.log(playerName);
-				  $("#player1").html(playerName);
-				  onClickDropdown(playerName, "first");
-				});
-			$(".dropdown-menu li a#dropdownList2").on('click', function(e) {
-				var playerName = $(this).html();
-				  console.log(playerName);
-				  $("#player2").html(playerName);
-				  onClickDropdown(playerName, "second");
-				}); 
 			//ScoreBar
 			$('.spincrement').spincrement({
 				from: 0,
@@ -337,11 +349,17 @@
 			});
 			
 			
+			$(".dropdown-toggle").dropdown();
 			
-			/* $(".dropdown-menu li a#dropdownList1").mouseover(function() {
-				var team = $(this).text();
-				loadSubMenu(team, "first");
-				}); */ 
+			$("#firstDropdown .dropdown-submenu .test").mouseover(function() {
+				   var teamName = $(this).text();
+				   onHoverDropdown(teamName, "first", this);
+			});
+			
+			$("#secondDropdown .dropdown-submenu .test").mouseover(function() {
+				   var teamName = $(this).text();
+				   onHoverDropdown(teamName, "second", this);
+			}); 
 			//$("#heading").html("Hello World");
 
 		});

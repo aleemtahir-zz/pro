@@ -39,7 +39,7 @@ h3{
         <li class="active"><a href="http://localhost:8080/Pro/">Home</a></li>
         <li><a href="http://localhost:8080/Pro/matchServlet">Match</a></li>
         <li><a href="http://localhost:8080/Pro/teamServlet">Team</a></li>
-        <li><a href="http://localhost:8080/Pro/compare.jsp">Comaprison</a></li>
+        <li><a href="http://localhost:8080/Pro/comparisonServlet">Comaprison</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

@@ -44,12 +44,12 @@ public class NLPservlet extends HttpServlet {
 		ArrayList<Integer> fourList2 = new ArrayList<Integer>();
 		try{
 			for(ResultTable rt: N.getResult()){
-				runsList1.add(Integer.parseInt(rt.getField1()));
-				runsList1.add(Integer.parseInt(rt.getField2()));
-				runsList1.add(Integer.parseInt(rt.getField3()));
-				runsList2.add(Integer.parseInt(rt.getField4()));
-				runsList2.add(Integer.parseInt(rt.getField6()));
-				runsList2.add(Integer.parseInt(rt.getField5()));
+				runsList1.add(Integer.parseInt(rt.getField()[0]));
+				runsList1.add(Integer.parseInt(rt.getField()[1]));
+				runsList1.add(Integer.parseInt(rt.getField()[2]));
+				runsList2.add(Integer.parseInt(rt.getField()[3]));
+				runsList2.add(Integer.parseInt(rt.getField()[4]));
+				runsList2.add(Integer.parseInt(rt.getField()[5]));
 				}
 		}
 		catch (Exception e){
@@ -69,11 +69,14 @@ public class NLPservlet extends HttpServlet {
 		N.clear();
 		N.getTokenList(query);
 		N.queryConvert();
-		for(int i=0; i<NLPsearch.getQueryList().size();i++)
-		{
-			request.setAttribute("field"+i, NLPsearch.getQueryList().get(i).replaceAll("\\?", ""));
+		String[] fieldHeadings=new String[NLPsearch.getQueryList().size()];
+		
+		for (int i = 0; i < NLPsearch.getQueryList().size(); i++) {
+			//request.setAttribute("field" + i, NLPsearch.getQueryList().get(i).replaceAll("\\?", ""));
+			fieldHeadings[i]=NLPsearch.getQueryList().get(i).replaceAll("\\?", "");
 		}
 		////code here but results list has data of players
+		request.setAttribute("field", fieldHeadings);
 		request.setAttribute("query", query);
 		request.setAttribute("count", N.getResult().size());
 		request.setAttribute("resultList1", N.getResult());

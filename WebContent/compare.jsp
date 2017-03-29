@@ -227,34 +227,7 @@
 				</div>
 				</div>
 				<br>
-				<div class="row content">           
-				<div class="progress_size col-sm-5">
-					<div class="spincrement" id="bt_avg1">0</div>
-				</div>
 				
-				<div class="attribute col-sm-2">
-					<div class="circle">Batting Average</div>
-					
-				</div>
-				<div class="progress_size col-sm-5">
-					<div class="spincrement" id="bt_avg2">0</div>
-				</div>
-				</div>
-				<br>
-				<div class="row content">           
-				<div class="progress_size col-sm-5">
-					<div class="spincrement" id="bl_avg1">0</div>
-				</div>
-				
-				<div class="attribute col-sm-2">
-					<div class="circle">Balling Average</div>
-					
-				</div>
-				<div class="progress_size col-sm-5">
-					<div class="spincrement" id="bl_avg2">0</div>
-				</div>
-				</div>
-				<br>
              
         </div> <!-- Container ends -->
         <script src="js/jquery-3.1.1.min.js"></script>

@@ -75,6 +75,18 @@ public class NLPservlet extends HttpServlet {
 			//request.setAttribute("field" + i, NLPsearch.getQueryList().get(i).replaceAll("\\?", ""));
 			fieldHeadings[i]=NLPsearch.getQueryList().get(i).replaceAll("\\?", "");
 		}
+		
+		//check query for vs token
+		String tokenList[] = query.split(" ");
+		for(String token: tokenList){
+			if(token.equals("vs")){
+				request.setAttribute("flag", "true");
+				break;
+			}
+			else
+				request.setAttribute("flag", "false");
+		}
+		
 		////code here but results list has data of players
 		request.setAttribute("field", fieldHeadings);
 		request.setAttribute("query", query);

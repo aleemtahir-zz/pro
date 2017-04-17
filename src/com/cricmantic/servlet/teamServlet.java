@@ -40,17 +40,31 @@ public class teamServlet extends HttpServlet {
 				request.setAttribute("playerList", list1);
 
 				int i;
-				query = "prefix " + uri + "select (sum(?score) as ?count) where { " + "demo:" + TeamName
+				/*query = "prefix " + uri + "select (sum(?score) as ?count) where { " + "demo:" + TeamName
 						+ " demo:hasPlayer ?player." + "?ball demo:ballBatsman ?player."
 						+ "?ball demo:playerScore ?score. } ";
-
+				*/
+				query = "prefix " + uri + "SELECT (sum(?s) as ?count ) where { "+
+						"?player demo:isPlayerOf demo:"+TeamName+"."+
+						"?balls demo:ballBatsman ?player."+
+						"demo:"+TeamName+" demo:instanceHasMatch ?Match."+
+						"?balls demo:instanceHasMatch ?Match."+
+						"?balls demo:teamScore ?s. "+
+						" } ";
+			
+				
 				i = com.cricmantic.functions.graphQuery.getSum(query);
 				request.setAttribute("runs", i);
 
-				query = "prefix " + uri + "select (count(?ball) as ?count) where { " + "demo:" + TeamName
-						+ " demo:hasPlayer ?player." + "?ball demo:ballBatsman ?player." + "?ball demo:event ?event."
-						+ "FILTER(regex(str(?event), 'SIX')) } ";
-
+				query = "prefix " + uri + "select (count(?e) as ?count) where { " +
+						"?player demo:isPlayerOf demo:"+TeamName+"."+
+						"?balls demo:ballBatsman ?player."+
+						"demo:"+TeamName+" demo:instanceHasMatch ?Match."+
+						"?balls demo:instanceHasMatch ?Match."+
+						"?balls demo:event ?e." + 
+						" FILTER(?e=\"SIX\")"+
+						" } ";
+				
 				i = com.cricmantic.functions.graphQuery.getSum(query);
 				request.setAttribute("sixes", i);
 

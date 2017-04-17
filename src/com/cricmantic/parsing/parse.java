@@ -9,14 +9,23 @@ import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.jena.query.Query;
+import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QueryFactory;
+import org.apache.jena.query.QuerySolution;
+import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 
+import com.cricmantic.functions.InsertRDF;
+
 public class parse {
 	private static String newuri = "http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#";
+	private static String uri = "demo:<http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#> ";
 	private static String match = "";
 	private static String matchInfo = "";
 	private static String matchToss = "";
@@ -25,16 +34,21 @@ public class parse {
 	private static String team2 = "";
 	private static String event = "";
 	private static String team1Innings = "";
+	@SuppressWarnings("unused")
 	private static String team2Innings = "";
 	private static String umpire = "";
 	private static String Tvumpire = "";
 	private static String venue = "";
 	private static String unregdata = "";
 	private static int balls = 0;
-	Model model = ModelFactory.createOntologyModel();
-
-	parse() {
-		model.read("C:\\Users\\Hamza\\workspace\\pro-master\\pro-master\\Archive\\cric.rdf");
+	static Model model = ModelFactory.createOntologyModel();
+	public static void main(String[] args) throws IOException, InterruptedException {
+		System.out.println("Working Directory = " +
+	              System.getProperty("user.dir"));
+	}
+	public parse() {
+		model = ModelFactory.createOntologyModel();
+		model.read(System.getProperty("user.dir")+"\\cric.rdf");
 	}
 
 	public void parseSum(String data) {
@@ -253,13 +267,15 @@ public class parse {
 		Pattern special = Pattern.compile("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
 		Matcher hasSpecial = null;
 		if (inn == 1) {
-			String content = null;
-			String fileName = "C:\\Users\\Hamza\\workspace\\pro-master\\pro-master\\Archive\\balls.txt";
-			FileInputStream fstream = new FileInputStream(fileName);
-			BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-			// Read File Line By Line
-			content = br.readLine();
-			balls = Integer.parseInt(content);
+			readBalls();
+		}
+		if (inn==3)
+		{
+			
+			model.read(System.getProperty("user.dir")+"\\cric.rdf");
+			readBalls();
+			getData();
+			
 		}
 		for (i = 0; i < data.length() - 3; i++) {
 
@@ -411,6 +427,7 @@ public class parse {
 						batsman = "UmarAkmal";
 					}
 					Resource Match = model.getResource(newuri + match);
+					Resource class1 = model.getResource(newuri + "Match");
 					Property ball = model.getProperty(newuri + "ballBowler");
 					Property pr2 = model.getProperty(newuri + "throwBall");
 					Resource overIns = model.createResource(newuri + String.valueOf(balls));
@@ -445,7 +462,7 @@ public class parse {
 					model.add(overIns, RDF.type, class3);
 					model.add(bowllerIns, RDF.type, class2);
 					model.add(batsmanIns, RDF.type, class2);
-
+					model.add(Match, RDF.type, class1);
 					model.add(overIns, hasMatch, Match);
 					model.add(bowllerIns, hasMatch, Match);
 					model.add(batsmanIns, hasMatch, Match);
@@ -496,13 +513,23 @@ public class parse {
 						model.add(batsmanIns,pr3,Team1);
 
 
-					} else {
+					} else if(inn == 2){
 						overIns.addLiteral(player1, "Second");
 						model.add(Team1, player, bowllerIns);
 						model.add(Team2, player, batsmanIns);
 						model.add(bowllerIns,pr3,Team1);
 						model.add(batsmanIns,pr3,Team2);
 
+					}
+					else if(inn == 3)
+					{
+						
+						overIns.addLiteral(player1, checkPlayer(bowler,batsman));
+						model.add(Team1, player, bowllerIns);
+						model.add(Team2, player, batsmanIns);
+						model.add(bowllerIns,pr3,Team1);
+						model.add(batsmanIns,pr3,Team2);
+						
 					}
 					System.out.println(over);
 					System.out.println(bowler);
@@ -526,26 +553,189 @@ public class parse {
 		}
 
 		if (inn == 2) {
-			String fileName = "C:\\Users\\Hamza\\workspace\\pro-master\\pro-master\\Archive\\balls.txt";
+			writeFile();
+
+		}
+		if(inn==3)
+		{
+			String fileName = System.getProperty("user.dir")+"\\Archive\\balls.txt";
 			FileWriter out;
 			File file = new File(fileName);
 			out = new FileWriter(file);
 			out.write(String.valueOf(balls));
 			out.close();
-			fileName = "C:\\Users\\Hamza\\workspace\\pro-master\\pro-master\\Archive\\FileNo.txt";
-			String content = null;
-			FileInputStream fstream = new FileInputStream(fileName);
-			BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-			// Read File Line By Line
-			content = br.readLine();
-			balls = Integer.parseInt(content);
-			fileName = "C:\\Users\\Hamza\\workspace\\pro-master\\pro-master\\Archive\\cricmantic"
-					+ Integer.toString(balls) + ".owl";
+			fileName = System.getProperty("user.dir")+"\\Archive\\commentary.rdf";
 			out = new FileWriter(fileName);
 			model.write(out, "RDF/XML");
 			out.close();
-
+			model=null;
+			
+			
 		}
 	}
-
+	public String getBall()
+	{
+		String ball=String.valueOf(balls-1);
+		return ball;
+		
+	}
+	private String checkPlayer(String bowler, String batsman) {
+		String endpoint = "http://localhost:7200/repositories/cricket";
+		Query query=null;
+		QueryExecution q =null;
+		ResultSet results =null;
+		String QueryString=null;
+		String team11=null;
+		String curInnings="";
+		if(match != null)
+		{
+			QueryString = "PREFIX " + uri + "\n" +
+					"SELECT * where { \n" +
+					"demo:"+bowler+ " demo:instanceHasMatch demo:"+match+"."+
+					"?s demo:hasPlayer demo:"+bowler+
+					" } ";
+			
+			query = QueryFactory.create(QueryString);
+			 q = QueryExecutionFactory.sparqlService(endpoint,
+					query);
+			results = q.execSelect();
+			while (results.hasNext()) {
+				QuerySolution soln = results.nextSolution();
+				team11 = (soln.get("?s").toString().replaceAll( newuri , "").replaceAll("..http(.*)", ""));
+			}
+			if(team11.equals(team1))
+			{
+				if (team1Innings == "First")
+				{
+					curInnings="Second";
+				}
+				if (team1Innings == "Second")
+				{
+					curInnings="First";
+				}
+				
+			}
+			QueryString = "PREFIX " + uri + "\n" +
+					"SELECT * where { \n" +
+					"demo:"+batsman+ " demo:instanceHasMatch demo:"+match+"."+
+					"?s demo:hasPlayer demo:"+batsman+
+					" } ";
+			
+			query = QueryFactory.create(QueryString);
+			q = QueryExecutionFactory.sparqlService(endpoint,
+					query);
+			results = q.execSelect();
+			while (results.hasNext()) {
+				QuerySolution soln = results.nextSolution();
+				team11 = (soln.get("?s").toString().replaceAll( newuri , "").replaceAll("..http(.*)", ""));
+			}
+			if(team11.equals(team1))
+			{
+				if (team1Innings == "First")
+				{
+					curInnings="First";
+				}
+				if (team1Innings == "Second")
+				{
+					curInnings="Second";
+				}
+			}
+		}
+		return curInnings;
+	}
+	private static void getData() {
+		Query query=null;
+		QueryExecution q =null;
+		ResultSet results =null;
+		String QueryString=null;
+		String endpoint = "http://localhost:7200/repositories/cricket";
+		String team11 = null;
+		String team22 = null;
+		String team11Innings=null;
+		String team22Innings=null;
+		if(match != null)
+		{
+			QueryString = "PREFIX " + uri + "\n" +
+					"SELECT * where { \n" +
+					"demo:"+match + " demo:team1 ?s." +
+					"demo:"+match + " demo:team2 ?o." +
+					" } ";
+			
+			query = QueryFactory.create(QueryString);
+			q = QueryExecutionFactory.sparqlService(endpoint,
+					query);
+			results = q.execSelect();
+			while (results.hasNext()) {
+				QuerySolution soln = results.nextSolution();
+				team11 = (soln.get("?s").toString().replaceAll( newuri , "").replaceAll("..http(.*)", ""));
+				team22 = (soln.get("?o").toString().replaceAll( newuri , "").replaceAll("..http(.*)", ""));
+			}
+			
+			team1=team11;
+			team2=team22;
+			QueryString = "PREFIX " + uri + "\n" +
+					"SELECT * where { \n" + 
+					"demo:"+match + " demo:1stInnings ?s." +
+					"demo:"+match + " demo:2ndInnings ?o." +
+					" } ";
+			
+			query = QueryFactory.create(QueryString);
+			q = QueryExecutionFactory.sparqlService(endpoint,
+					query);
+			results = q.execSelect();
+			while (results.hasNext()) {
+				QuerySolution soln = results.nextSolution();
+				team11 = (soln.get("?s").toString().replaceAll( newuri , "").replaceAll("..http(.*)", ""));
+				team22 = (soln.get("?o").toString().replaceAll( newuri , "").replaceAll("..http(.*)", ""));
+			}
+			if(team1==team11)
+			{
+				team1Innings="First";
+				team2Innings="Second";
+			}
+			else
+			{
+				team1Innings="Second";
+				team2Innings="First";
+			}
+		}
+			
+	}
+	private static void writeFile() throws IOException
+	{
+		String fileName = System.getProperty("user.dir")+"\\Archive\\balls.txt";
+		FileWriter out;
+		File file = new File(fileName);
+		out = new FileWriter(file);
+		out.write(String.valueOf(balls));
+		out.close();
+		fileName = System.getProperty("user.dir")+"\\Archive\\FileNo.txt";
+		String content = null;
+		FileInputStream fstream = new FileInputStream(fileName);
+		BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+		// Read File Line By Line
+		content = br.readLine();
+		balls = Integer.parseInt(content);
+		fileName = System.getProperty("user.dir")+"\\Archive\\cricmantic"
+				+ Integer.toString(balls) + ".owl";
+		out = new FileWriter(fileName);
+		model.write(out, "RDF/XML");
+		out.close();
+		model=null;
+	}
+	private static void readBalls() throws IOException
+	{
+		String content = null;
+		String fileName = System.getProperty("user.dir")+"\\Archive\\balls.txt";
+		FileInputStream fstream = new FileInputStream(fileName);
+		BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+		// Read File Line By Line
+		content = br.readLine();
+		balls = Integer.parseInt(content);
+		
+	}
+	public void addMatch(String match2) {
+		// TODO Auto-generated method stub
+		match=match2;
+	}
 }

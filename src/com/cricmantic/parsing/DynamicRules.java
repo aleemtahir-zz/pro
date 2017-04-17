@@ -45,13 +45,13 @@ public class DynamicRules {
 	public void inferRules() throws IOException {
 		Model model = ModelFactory.createOntologyModel();
 		String content = null;
-		String fileName = "C:\\Users\\Hamza\\workspace\\pro-master\\pro-master\\Archive\\FileNo.txt";
+		String fileName = System.getProperty("user.dir")+"\\Archive\\FileNo.txt";
 		FileInputStream fstream = new FileInputStream(fileName);
 		BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 		// Read File Line By Line
 		content = br.readLine();
 		fileNo = Integer.parseInt(content);
-			fileName = "C:\\Users\\Hamza\\workspace\\pro-master\\pro-master\\Archive\\cricmantic" + Integer.toString(fileNo)
+			fileName = System.getProperty("user.dir")+"\\Archive\\cricmantic" + Integer.toString(fileNo)
 					+ ".owl";
 	
 		model.read(fileName);
@@ -60,6 +60,7 @@ public class DynamicRules {
 				+ "{ ?s rdf:type demo:Match"
 				+ " } ";
 		Query query = QueryFactory.create(QueryString);
+		
 		QueryExecution q = QueryExecutionFactory.create(query, model);
 		ResultSet results = q.execSelect();
 		while (results.hasNext()) {
@@ -153,7 +154,6 @@ public class DynamicRules {
 			System.out.println(score2);
 			System.out.println(team1);
 			System.out.println(team2);
-
 			System.out.println(wik1);
 			System.out.println(wik2);
 			Resource class1 = model.getResource(ns + "Match");
@@ -196,17 +196,11 @@ public class DynamicRules {
 		}
 
 		FileWriter out = null;
-		fileName = "C:\\Users\\Hamza\\workspace\\pro-master\\pro-master\\Archive\\cricmantic" + Integer.toString(fileNo)
+		fileName = System.getProperty("user.dir")+"\\Archive\\cricmantic" + Integer.toString(fileNo)
 		+ ".owl";
 		out = new FileWriter(fileName);
 		model.write(out, "RDF/XML");
 		out.close();
-		fileName = "C:\\Users\\Hamza\\workspace\\pro-master\\pro-master\\Archive\\FileNo.txt";
-		out = new FileWriter(fileName);
-		fileNo = fileNo + 1;
-		System.out.println(fileNo);
-		out.write(Integer.toString(fileNo));
-		out.close();
-		br.close();
+		
 	}
 }

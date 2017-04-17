@@ -53,7 +53,7 @@ public class graph {
 
 		// System.out.println("# Loading ontology and data");
 		connection.begin();
-		connection.add(graph.class.getResourceAsStream("/files/cric.rdf"), "urn:base", RDFFormat.RDFXML);
+		connection.add(graph.class.getResourceAsStream("src/cricmantic3.owl"), "urn:base", RDFFormat.RDFXML);
 		// connection.add(FamilyRelationsApp.class.getResourceAsStream("/family-data.ttl"),
 		// "urn:base", RDFFormat.TURTLE);
 		connection.commit();

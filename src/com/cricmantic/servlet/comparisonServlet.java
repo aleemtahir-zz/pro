@@ -86,6 +86,7 @@ public class comparisonServlet extends HttpServlet {
 			json.put("playerRecord", list);
 			json.put("flag", flag);
 			out.print(json);
+			
 		}
 
 	}

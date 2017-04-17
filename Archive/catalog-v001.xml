@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1491802235426" name="duplicate:http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1" uri="cric.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1491802235426" name="duplicate:http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1" uri="cricmantic.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1491802235426" name="duplicate:http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1" uri="cricmantic1.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1491802235426" name="duplicate:http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1" uri="cricmantic2.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1491802235426" name="duplicate:http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1" uri="cricmantic3.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1491802235426" name="duplicate:http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1" uri="cricmantic4.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1491802235426" name="duplicate:http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1" uri="cricmantic5.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1491802235426" name="duplicate:http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1" uri="cricmantic6.owl"/>
+    </group>
+</catalog>

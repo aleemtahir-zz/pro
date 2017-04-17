@@ -9,18 +9,19 @@
     xmlns:h="http://java.sun.com/jsf/html">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cricmantic</title>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<link href="css/style.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 <link href="css/searchResult.css" rel="stylesheet" type="text/css" />
 <link href="css/font.css" rel="stylesheet" type="text/css">
 <link href="css/font.css" rel="stylesheet" type="text/css">
 <link href="css/normalize.css" rel="stylesheet" type="text/css" />
 <link href="css/component.css" rel="stylesheet" type="text/css" />
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 </script>
 <style>
 body{
@@ -56,6 +57,20 @@ body{
         <li><a href="http://localhost:8080/Pro/teamServlet">Team</a></li>
         <li><a href="http://localhost:8080/Pro/comparisonServlet">Comaprison</a></li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+      
+      <%
+                String username= (String) session.getAttribute("user");                     
+                if (username == null) {
+            %>
+      		<li><a href="http://localhost:8080/Pro/login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+        <% } else {
+         %>
+         	<li><a href="http://localhost:8080/Pro/ParseServlet">Add Data</a></li>
+            <li><a href="http://localhost:8080/Pro/logout.jsp"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+        <% }%>
+    </ul>
     </div><!--/.nav-collapse -->
   </div>
 </div>
@@ -123,7 +138,6 @@ body{
 <script src="js/progressbar.min.js"></script>
 <script src="js/Chart.min.js"></script>
 	<script type="text/javascript">
-
 	function respondCanvas(ctx, chartData){
 		
 		var myPieChart = new Chart(ctx,{
@@ -159,9 +173,7 @@ body{
 	}
 	
     function addContent(content) {
-
         document.getElementById('chartDiv').innerHTML = content;
-
     }
     
     function chartsCall(){

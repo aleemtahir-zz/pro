@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="css/style.css">
 <title>Cricmantic</title>
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
 <style>
 		
@@ -32,6 +33,20 @@
         <li><a href="http://localhost:8080/Pro/teamServlet">Team</a></li>
         <li><a href="http://localhost:8080/Pro/comparisonServlet">Comaprison</a></li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+      
+      <%
+                String username= (String) session.getAttribute("user");                     
+                if (username == null) {
+            %>
+      		<li><a href="http://localhost:8080/Pro/login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+        <% } else {
+         %>
+         	<li><a href="http://localhost:8080/Pro/ParseServlet">Add Data</a></li>
+            <li><a href="http://localhost:8080/Pro/logout.jsp"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+        <% }%>
+    </ul>
     </div><!--/.nav-collapse -->
   </div>
 </div>

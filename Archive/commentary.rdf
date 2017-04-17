@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<rdf:RDF
+    xmlns:demo="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:untitled-ontology-11="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#2"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:untitled-ontology-1="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#1"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <owl:Ontology rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1"/>
+  <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team">
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Match"/>
+  <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Umpire"/>
+  <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player">
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#TVUmpire">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Umpire"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#T20">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#MatchType"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#FieldUmpire">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Umpire"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Overs"/>
+  <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#ODI">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#MatchType"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Test">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#MatchType"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#1stInnings">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Match"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#playedBall">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:comment xml:lang="en">player play specific ball</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Overs"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#ballBowler">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Overs"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#win">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Match"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#throwBall">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Overs"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#2ndInnings">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Match"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#playedAgainst">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#loss">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Match"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#team1">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Match"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#matchBetween">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#team2">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Match"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#instanceHasMatch">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Match"/>
+    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#hasPlayer">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:comment xml:lang="en">Team has specific player</rdfs:comment>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#playedMatch">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Match"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#ballBatsman">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Overs"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#isPlayerOf">
+    <rdfs:range rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#matchDate"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#teamScore">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Player"/>
+          <owl:Class rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Team"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#matchVenue">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#playerName"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#matchTvUmpire">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#playerScore"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#innings"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#extraScore"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#matchTeam2Score"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#matchTeam2Wickets"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#matchStatus"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#matchTeam1Wickets"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#teamName"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#matchInfo"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#matchToss"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#matchUmpires"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#matchTeam1Score"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#event"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#manOfTheMatch"/>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#over">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#Overs"/>
+  </owl:DatatypeProperty>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2>
+              <swrl:Variable rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#b"/>
+            </swrl:argument2>
+            <swrl:argument1>
+              <swrl:Variable rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#p"/>
+            </swrl:argument1>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#throwBall"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#p"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#b"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#ballBowler"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S4</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2>
+              <swrl:Variable rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/b"/>
+            </swrl:argument2>
+            <swrl:argument1>
+              <swrl:Variable rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/p"/>
+            </swrl:argument1>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#playedBall"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/p"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/b"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#ballBatsman"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S6</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:rest>
+                  <swrl:AtomList>
+                    <rdf:rest>
+                      <swrl:AtomList>
+                        <rdf:rest>
+                          <swrl:AtomList>
+                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            <rdf:first>
+                              <swrl:IndividualPropertyAtom>
+                                <swrl:argument2>
+                                  <swrl:Variable rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/t2"/>
+                                </swrl:argument2>
+                                <swrl:argument1>
+                                  <swrl:Variable rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/t1"/>
+                                </swrl:argument1>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#playedAgainst"/>
+                              </swrl:IndividualPropertyAtom>
+                            </rdf:first>
+                          </swrl:AtomList>
+                        </rdf:rest>
+                        <rdf:first>
+                          <swrl:IndividualPropertyAtom>
+                            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t2"/>
+                            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t1"/>
+                            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#matchBetween"/>
+                          </swrl:IndividualPropertyAtom>
+                        </rdf:first>
+                      </swrl:AtomList>
+                    </rdf:rest>
+                    <rdf:first>
+                      <swrl:IndividualPropertyAtom>
+                        <swrl:argument2>
+                          <swrl:Variable rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/m"/>
+                        </swrl:argument2>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t2"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#playedMatch"/>
+                      </swrl:IndividualPropertyAtom>
+                    </rdf:first>
+                  </swrl:AtomList>
+                </rdf:rest>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/m"/>
+                    <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t1"/>
+                    <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#playedMatch"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+              </swrl:AtomList>
+            </rdf:rest>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/m"/>
+                <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t2"/>
+                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#instanceHasMatch"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/m"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t1"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#instanceHasMatch"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t2"/>
+                <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/m"/>
+                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#team2"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t1"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/m"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#team1"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S3</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2>
+              <swrl:Variable rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t1"/>
+            </swrl:argument2>
+            <swrl:argument1>
+              <swrl:Variable rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+            </swrl:argument1>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#2ndInnings"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t1"/>
+                    <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+                    <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#team1"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+              </swrl:AtomList>
+            </rdf:rest>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:argument2>
+                  <swrl:Variable rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t2"/>
+                </swrl:argument2>
+                <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#team2"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t2"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#1stInnings"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S5</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:rest>
+                  <swrl:AtomList>
+                    <rdf:rest>
+                      <swrl:AtomList>
+                        <rdf:rest>
+                          <swrl:AtomList>
+                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            <rdf:first>
+                              <swrl:IndividualPropertyAtom>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t2"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t1"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#playedAgainst"/>
+                              </swrl:IndividualPropertyAtom>
+                            </rdf:first>
+                          </swrl:AtomList>
+                        </rdf:rest>
+                        <rdf:first>
+                          <swrl:IndividualPropertyAtom>
+                            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t2"/>
+                            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t1"/>
+                            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#matchBetween"/>
+                          </swrl:IndividualPropertyAtom>
+                        </rdf:first>
+                      </swrl:AtomList>
+                    </rdf:rest>
+                    <rdf:first>
+                      <swrl:IndividualPropertyAtom>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/m"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t2"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#playedMatch"/>
+                      </swrl:IndividualPropertyAtom>
+                    </rdf:first>
+                  </swrl:AtomList>
+                </rdf:rest>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/m"/>
+                    <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t1"/>
+                    <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#playedMatch"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+              </swrl:AtomList>
+            </rdf:rest>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/m"/>
+                <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t2"/>
+                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#instanceHasMatch"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/m"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t1"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#instanceHasMatch"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t2"/>
+                <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/m"/>
+                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#team2"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/t1"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/m"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#team1"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S3</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t2"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#2ndInnings"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t2"/>
+                    <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+                    <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#team2"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+              </swrl:AtomList>
+            </rdf:rest>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t1"/>
+                <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#1stInnings"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t1"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#team1"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S2</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/b"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/p"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#playedBall"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/p"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/b"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#ballBatsman"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S6</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2>
+              <swrl:Variable rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#x"/>
+            </swrl:argument2>
+            <swrl:argument1>
+              <swrl:Variable rdf:about="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#y"/>
+            </swrl:argument1>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#isPlayerOf"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#y"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#x"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#hasPlayer"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S1</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t2"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#2ndInnings"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t2"/>
+                    <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+                    <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#team2"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+              </swrl:AtomList>
+            </rdf:rest>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t1"/>
+                <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#1stInnings"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t1"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#team1"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S2</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t1"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#2ndInnings"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t1"/>
+                    <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+                    <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#team1"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+              </swrl:AtomList>
+            </rdf:rest>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t2"/>
+                <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#team2"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#t2"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#m"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#1stInnings"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S5</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#b"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#p"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#throwBall"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#p"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#b"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#ballBowler"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S4</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+  <swrl:Imp>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#x"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#y"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#isPlayerOf"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument2 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#y"/>
+            <swrl:argument1 rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#x"/>
+            <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/Hamza/ontologies/2016/7/untitled-ontology-1#hasPlayer"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <rdfs:label>S1</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+  </swrl:Imp>
+</rdf:RDF>

@@ -86,7 +86,7 @@
 					<div id="runsContainer">
 						<div id="scoreContainer2" class="scoreContainer"></div>
 						<div id="textid">
-							<span>Average</span>
+							<span>Wickets</span>
 						</div>
 					</div>
 					</div>
@@ -100,7 +100,7 @@
 					<div id="runsContainer">
 						<div id="scoreContainer4" class="scoreContainer"></div>
 						<div id="textid">
-							<span>Sixess</span>
+							<span>Sixes</span>
 						</div>
 					</div>
 					</div>
@@ -396,7 +396,7 @@
 			GetChartData();
 			GetChartData2();
 			GetProgressBarData("runs","scoreContainer1");
-			GetProgressBarData("runs","scoreContainer2");
+			GetProgressBarData("out","scoreContainer2");
 			GetProgressBarData("4s", "scoreContainer3");
 			GetProgressBarData("6s", "scoreContainer4");
 			

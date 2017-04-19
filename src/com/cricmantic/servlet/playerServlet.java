@@ -108,6 +108,14 @@ public class playerServlet extends HttpServlet {
 
 			int i = com.cricmantic.functions.graphQuery.getSum(query);
 			out.print(i);
+		} else if (event.equals("out")) {
+			String query = null;
+			query = "prefix " + uri + "select (count(?ball) as ?count)  where { " + "?ball demo:ballBowler "+ "demo:" + name + "."
+					+ "?ball demo:ballBatsman  ?player ." + "?ball demo:event ?event."
+					+ "FILTER(regex(str(?event), 'OUT')) } ";
+
+			int i = com.cricmantic.functions.graphQuery.getSum(query);
+			out.print(i);
 		}
 	}
 

@@ -84,29 +84,7 @@ public class graph {
 		ResultSet rs = q.execSelect();
 
 		return rs;
-		// ResultSetFormatter.out(System.out, results);
-		// int i=0;
-		/*
-		 * while (rs.hasNext()) { QuerySolution soln = rs.nextSolution();
-		 * RDFNode node = soln.get("count"); String s = node.toString(); s =
-		 * s.replaceAll("..http(.*)", ""); i = Integer.parseInt(s);
-		 * System.out.print(i); //list.add(x.toString());
-		 * 
-		 * }
-		 */
 
-		/*
-		 * while (rs.hasNext()) { RowObject result = new RowObject();
-		 * QuerySolution binding = rs.nextSolution(); String x =
-		 * binding.get("x").toString(); x = x.replaceAll(
-		 * "http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#",
-		 * ""); String y = binding.get("y").toString(); y = y.replaceAll(
-		 * "http://www.semanticweb.org/tayyab/ontologies/2016/7/untitled-ontology-2#",
-		 * ""); result.setSubject(binding.get("x"));
-		 * result.setObject(binding.get("y")); // ... results.add(result); }
-		 */
-		// return results;
-		// return i;
 	}
 
 }
